@@ -16,4 +16,8 @@ def welcome(): #Ashley Kharbanda
 
 def play(): #Lily Dinh
     "Create player class"
+
+def turn():
+    """Experimental function that will end a players turn.
     
+    """
