@@ -13,5 +13,7 @@ def welcome(): #Ashley Kharbanda
         This function will display to users the rules of the game with an 
         example roll
     """
+
+def play(): #Lily Dinh
+    "Create player class"
     
-#lily
