@@ -20,4 +20,8 @@ def play(): #Lily Dinh
 def turn():
     """Experimental function that will end a players turn.
     
+    """ 
+    
+    """ player 1 player 2
+    
     """
