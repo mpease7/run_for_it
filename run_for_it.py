@@ -25,3 +25,9 @@ def turn():
     """ player 1 player 2
     
     """
+    
+def history_score(): # Beza Ermias
+    """
+    The player history score
+    
+    """
