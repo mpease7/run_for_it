@@ -21,12 +21,34 @@ def turn():
     """Experimental function that will end a players turn.
     """ 
     player_roll = [2,3,5,4,6,3]
+    sequence = [1,2,3,4,5,6]
     if 1 not in player_roll:
-        repeats = [number for number in player_roll if player_roll.count(number) > 3]
-        if repeats == True:
+        count = 0
+        check = 3
+        prev = 0
+        chance = 0
+
+        player_roll.sort()
+        for num in player_roll:
+            if num == prev:
+                count += 1
+            else:
+                count = 1
+            prev = num
+
+            if count >= check:
+                chance = 1
+
+        if chance == 1:
             print("Roll again")
         else:
             print("Turn over")
+    if sequence in player_roll:
+        again = input("Test your luck and roll again?").lower()
+        if again == 'yes':
+            print("Roll again!")
+        if again == 'no':
+            print("Turn over!")
     
         
     """ player 1 player 2
