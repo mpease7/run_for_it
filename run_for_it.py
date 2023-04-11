@@ -19,9 +19,16 @@ def play(): #Lily Dinh
 
 def turn():
     """Experimental function that will end a players turn.
-    
     """ 
+    player_roll = [2,3,5,4,6,3]
+    if 1 not in player_roll:
+        repeats = [number for number in player_roll if player_roll.count(number) > 3]
+        if repeats == True:
+            print("Roll again")
+        else:
+            print("Turn over")
     
+        
     """ player 1 player 2
     
     """
