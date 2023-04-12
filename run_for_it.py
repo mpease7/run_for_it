@@ -4,13 +4,18 @@ import random
 
 #Maria Master - code written before Player class created
 def roll(self): #Maria Master
+    """ Rolling a dice 6 times and adding the values to a list.
+    
+        Raises:
+            ValueError: if a Player tries to roll more than 6 times. 
+    """
     #assuming there is an attribute self.rolls = []
     if len(self.rolls) < 6:
         roll = random.randint(1, 6)
         self.rolls.append(roll)
     else:
         #assuming there is an attribute self.name = name (Player's name)
-        print(f"{self.name} has already rolled 6 times.")
+        raise ValueError(f"{self.name} has already rolled 6 times.")
 
 
 def sorting_sequence(self): #Maria Master
@@ -52,5 +57,44 @@ def play(): #Lily Dinh
 
 def turn(): 
     """Experimental function that will end a players turn.
+    """ 
+    player_roll = [2,3,5,4,6,3]
+    sequence = [1,2,3,4,5,6]
+    if 1 not in player_roll:
+        count = 0
+        check = 3
+        prev = 0
+        chance = 0
+
+        player_roll.sort()
+        for num in player_roll:
+            if num == prev:
+                count += 1
+            else:
+                count = 1
+            prev = num
+
+            if count >= check:
+                chance = 1
+
+        if chance == 1:
+            print("Roll again")
+        else:
+            print("Turn over")
+    if sequence in player_roll:
+        again = input("Test your luck and roll again?").lower()
+        if again == 'yes':
+            print("Roll again!")
+        if again == 'no':
+            print("Turn over!")
+    
+        
+    """ player 1 player 2
+    
+    """
+    
+def history_score(): # Beza Ermias
+    """
+    The player history score
     
     """
