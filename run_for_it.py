@@ -2,6 +2,25 @@
 
 import random
 
+class Players:
+    """Represents a player in the game
+
+    Attributes:
+        name(str): The player's name
+        points(int): the total points earned from each player in the game
+        rolls(list): List that consists of the dice rolls made by the player 
+    """
+    
+    def __init__(self, name):
+        """ Initializes new player object with name given
+
+        Args:
+            name (str): The player's name
+        """
+        self.name = name
+        self.points = 0
+        self.roll = []
+
 #Maria Master - code written before Player class created
 def roll(self): #Maria Master
     """ Rolling a dice 6 times and adding the values to a list.
@@ -52,8 +71,7 @@ def welcome(): #Ashley Kharbanda
         example roll
     """
 
-def play(): #Lily Dinh
-    "Create player class"
+
 
 def turn(): 
     """Experimental function that will end a players turn.
