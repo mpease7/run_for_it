@@ -19,7 +19,7 @@ class Players:
         """
         self.name = name
         self.points = 0
-        self.roll = []
+        self.rolls = []
 
 #Maria Master - code written before Player class created
 def roll(self): #Maria Master
