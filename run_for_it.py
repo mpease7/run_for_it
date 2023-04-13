@@ -70,18 +70,20 @@ class Players: #Lily Dinh
 
 
 
-    def turn(): 
+    def turn(self,rolls): 
         """Experimental function that will end a players turn.
         """ 
-        player_roll = [2,3,5,4,6,3]
-        sequence = [1,2,3,4,5,6]
-        if 1 not in player_roll:
+        player_roll = [2,3,5,6,1,3] #for testing purposes
+        sequence = {1,2,3,4,5,6} #for testing purposes
+
+        player_roll.sort() #for testing purposes
+        roll  = set(player_roll) #replace w/ set frm sorting_sequence method
+        if 1 not in player_roll: #replace w/ sorted frm sorting_sequences method
             count = 0
             check = 3
             prev = 0
             chance = 0
 
-            player_roll.sort()
             for num in player_roll:
                 if num == prev:
                     count += 1
@@ -96,12 +98,25 @@ class Players: #Lily Dinh
                 print("Roll again")
             else:
                 print("Turn over")
-        if sequence in player_roll:
-            again = input("Test your luck and roll again?").lower()
+                
+        if 1 in player_roll:
+            combine = roll & sequence
+            combined_list = list(combine)
+            get_dice = []
+            print(combined_list)
+
+            for i in range(len(combined_list) - 1):
+                if combined_list[i] < combined_list[i+1]:
+                    get_dice.append(i)
+            print(get_dice) # the dice that will be counted towards points
+            
+            again = input("Test your luck and roll again? (yes or no)").lower()
             if again == 'yes':
                 print("Roll again!")
             if again == 'no':
                 print("Turn over!")
+        
+
         
             
         """ player 1 player 2
