@@ -123,8 +123,13 @@ class Players: #Lily Dinh
         
         """
         
-    def history_score(): # Beza Ermias
+    def history_score(scores): # Beza Ermias
         """
         The player history score
         
+        Args:
+            scores(int): the score that will be displayed once the players 
+            the game.
         """
+        for i in range(len(scores)):
+            print(f"Round{i+1}:{scores[1]} points")
