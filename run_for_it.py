@@ -61,15 +61,6 @@ class Players: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-        
-    def welcome(): #Ashley Kharbanda
-        """A experimental function for this exercise;
-            This function will display to users the rules of the game with an 
-            example roll
-        """
-
-
-
     def turn(self,rolls): 
         """Experimental function that will end a players turn.
         """ 
@@ -128,3 +119,41 @@ class Players: #Lily Dinh
         The player history score
         
         """
+        
+#Outside of a class until we create a board class/game class     
+def welcome(self): #Ashley Kharbanda
+    """Display to users the rules of the game with an 
+            example roll
+    """
+    print("===================================================================")
+    #Since the argument for the send player hasn't been made, I will replace
+    #"self.name's friend to their name instead
+    print(f"Welcome {self.name} and {self.name}'s friend to Run For It!!")
+    print("The rules of the game are simple! First person to make it to \
+100 points wins!\n1)Each round, each player will roll six dice. \
+\n2)If you rolled the number one, you will begin your \
+sequence, but if you don't, your turn will end. \n3)If you roll a one, or 3 \
+of the same number, you \
+have the option to roll your remaining dice to increase your sequence, \
+but if you do not roll a number to continue the sequence, you will lose \
+all your points for that round.")
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+    print("Example: \nRoll: 1,3,4,4,5,6 \nI will choose to roll the \
+remaining 5 again because I got a 1 in my sequence \nNew Role: \
+1,2,3,3,5,6 \nBecause I have a sequence of 1,2,3 my score will \
+translate to 15 points and my turn will be over \nMy friend and \
+I will both keep having turns until one of us reach a \
+score of 100")
+    print("===================================================================")
+    while True:
+        play_choice = (input("Would you like to keep playing? Type 'Y' or \
+    'N'").lower().strip())
+        if play_choice[0] not in ["y","n"]:
+            print("Invalid choice, please write 'Y' or 'N'")
+        elif play_choice == "y":
+            print("Have Fun!")
+            break #test for now, otherwise prints game board and starts game
+        else:
+            print("I'm sorry to hear that! Goodbye!")
+            break
+        
