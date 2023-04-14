@@ -61,15 +61,6 @@ class Players: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-        
-    def welcome(): #Ashley Kharbanda
-        """A experimental function for this exercise;
-            This function will display to users the rules of the game with an 
-            example roll
-        """
-
-
-
     def turn(self,rolls): 
         """Experimental function that will end a players turn.
         """ 
