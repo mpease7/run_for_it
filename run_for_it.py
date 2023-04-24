@@ -31,7 +31,7 @@ class Players: #Lily Dinh
             roll = random.randint(1, 6)
             self.rolls.append(roll)
         else:
-            raise ValueError(f"{self.name} has already rolled 6 times.")
+            print(f"{self.name} has already rolled 6 times.")
 
 
     def sorting_sequence(self): #Maria Master
@@ -42,8 +42,8 @@ class Players: #Lily Dinh
                 unpacked_set_values(list of tuples): the roll number and roll value.
         """
         if len(self.rolls) == 6:
-            sorted_rolls = sorted(self.rolls)
-            set_rolls = set(sorted_rolls)
+            self.sorted_rolls = sorted(self.rolls)
+            self.set_rolls = set(self.sorted_rolls)
                 
             set_values = len(set_rolls)
                 
