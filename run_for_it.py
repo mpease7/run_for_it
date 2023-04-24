@@ -58,21 +58,19 @@ class Players: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-    def turn(self,rolls): 
+    def turn(self): 
         """Experimental function that will end a players turn.
         """ 
-        player_roll = [2,3,5,6,1,3] #for testing purposes
         sequence = {1,2,3,4,5,6} #for testing purposes
-
-        player_roll.sort() #for testing purposes
-        roll  = set(player_roll) #replace w/ set frm sorting_sequence method
-        if 1 not in player_roll: #replace w/ sorted frm sorting_sequences method
+        get_dice = []
+        
+        if 1 not in self.sorted_rolls: #replace w/ sorted frm sorting_sequences method
             count = 0
             check = 3
             prev = 0
             chance = 0
 
-            for num in player_roll:
+            for num in self.sorted_rolls:
                 if num == prev:
                     count += 1
                 else:
@@ -83,26 +81,33 @@ class Players: #Lily Dinh
                     chance = 1
 
             if chance == 1:
-                print("Roll again")
+                print("You got 3 of the same! Roll again!")
             else:
-                print("Turn over")
+                print("You didn't roll a 1! Turn over! :p")
                 
-        if 1 in player_roll:
-            combine = roll & sequence
+        if 1 in self.sorted_rolls:
+            combine =  self.set_rolls & sequence
             combined_list = list(combine)
-            get_dice = []
-            print(combined_list)
+            print(f"You rolled: {combined_list}")
 
-            for i in range(len(combined_list) - 1):
-                if combined_list[i] < combined_list[i+1]:
-                    get_dice.append(i)
-            print(get_dice) # the dice that will be counted towards points
-            
+            for tup in unpacked_set_values: #HOW FIX???
+                if tup[0] == tup[1]:
+                    get_dice.append(tup[1])
+            print(f"Your sequence: {get_dice}")
+
             again = input("Test your luck and roll again? (yes or no)").lower()
-            if again == 'yes':
-                print("Roll again!")
-            if again == 'no':
-                print("Turn over!")
+
+            print("Roll again!") if again == 'yes' else print("Turn over")
+        
+        if again == 'yes': #if player tests luck and rolls again they have to get a number that continues the sequence
+            new_roll = []
+            rolling = 6 - len(get_dice)
+            for i in range(rolling):
+                dice = random.randint(1, 6)
+                new_roll.append(dice)
+                x = sorted(new_roll)
+            print(f"You rolled: {x}")
+            print("More points!") if get_dice[-1] + 1 in x else print("Turn over! no points")
         
 
         
