@@ -110,10 +110,16 @@ class Players: #Lily Dinh
 
         
             
-        """ player 1 player 2
-        
+    def sabotaging_points(perfect_sequence): # Beza Ermias
         """
+        If a player gets a perfect sequence this will allow the user subtract two points from the other player
         
+        Args:
+            perfect_sequence(int): making sure that the person has a perfect sequence which is 6 and less than that
+            they will not be able to take the other player point.
+        
+        
+        """        
     def history_score(scores): # Beza Ermias
         """
         The player history score
@@ -124,6 +130,7 @@ class Players: #Lily Dinh
         """
         for i in range(len(scores)):
             print(f"Round{i+1}:{scores[1]} points")
+            
             
 def welcome(self): #Ashley Kharbanda
     """Display to users the rules of the game with an 
