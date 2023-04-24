@@ -27,12 +27,9 @@ class Players: #Lily Dinh
             Raises:
                 ValueError: if a Player tries to roll more than 6 times. 
         """
-        if len(self.rolls) < 6:
+        for roll in range(6):
             roll = random.randint(1, 6)
             self.rolls.append(roll)
-        else:
-            print(f"{self.name} has already rolled 6 times.")
-
 
     def sorting_sequence(self): #Maria Master
         """ An experimental function. Sorts a list of dice roll values and extracts
