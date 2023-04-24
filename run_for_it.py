@@ -67,15 +67,14 @@ class Players: #Lily Dinh
         player_roll = [2,3,5,6,1,3] #for testing purposes
         sequence = {1,2,3,4,5,6} #for testing purposes
 
-        player_roll.sort() #for testing purposes
         roll  = set(player_roll) #replace w/ set frm sorting_sequence method
-        if 1 not in player_roll: #replace w/ sorted frm sorting_sequences method
+        if 1 not in self.sorted_rolls: #replace w/ sorted frm sorting_sequences method
             count = 0
             check = 3
             prev = 0
             chance = 0
 
-            for num in player_roll:
+            for num in self.sorted_rolls:
                 if num == prev:
                     count += 1
                 else:
@@ -90,8 +89,8 @@ class Players: #Lily Dinh
             else:
                 print("Turn over")
                 
-        if 1 in player_roll:
-            combine = roll & sequence
+        if 1 in self.sorted_rolls:
+            combine = self.set_rolls & sequence
             combined_list = list(combine)
             get_dice = []
             print(combined_list)
