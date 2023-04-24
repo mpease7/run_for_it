@@ -45,11 +45,11 @@ class Players: #Lily Dinh
             self.sorted_rolls = sorted(self.rolls)
             self.set_rolls = set(self.sorted_rolls)
                 
-            set_values = len(set_rolls)
+            set_values = len(self.set_rolls)
                 
             if set_values <= 6:
                 unpacked_set_values = []
-                for roll_num, roll in enumerate(set_rolls):
+                for roll_num, roll in enumerate(self.set_rolls):
                     unpacked_set_values.append((roll_num+1, roll))
                 return unpacked_set_values
                     #roll_num+1 because the index starts at 0
