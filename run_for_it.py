@@ -1,6 +1,7 @@
 """This is a implementation of the game 'Run For It'"""
 
 import random
+import matplotlib.pyplot as plt
 
 class Players: #Lily Dinh
     """Represents a player in the game
@@ -19,7 +20,7 @@ class Players: #Lily Dinh
         """
         self.name = name
         self.points = 0
-        self.rolls = []
+        self.rolls = [3,5,4,2,1,6,2,4,3,5,1,6,4,5,6,3,2,1,3,4,5,3]
 
     def roll(self): #Maria Master
         """ Rolling a dice 6 times and adding the values to a list.
@@ -108,6 +109,7 @@ class Players: #Lily Dinh
                 x = sorted(new_roll)
             print(f"You rolled: {x}")
             print("More points!") if get_dice[-1] + 1 in x else print("Turn over! no points")
+            
         
 
         
@@ -122,16 +124,26 @@ class Players: #Lily Dinh
         
         
         """        
-    def history_score(scores): # Beza Ermias
+    def history_score(self): # Beza Ermias
         """
         The player history score
         
         Args:
-            scores(int): the score that will be displayed once the players 
+            scores(int): the score that will be displayed once the players ends
             the game.
         """
-        for i in range(len(scores)):
-            print(f"Round{i+1}:{scores[1]} points")
+        rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+        for roll in self.rolls:
+            rolled_charts[roll] = rolled_charts[roll]+1
+        print(rolled_charts)
+        plt.bar(rolled_charts.keys(),rolled_charts.values())
+        plt.xlabel("Dice Rolls")
+        plt.ylabel("Count")
+        plt.title(f"Dice Roll By {self.name}")
+        plt.show()
+        
+        # for i in range(len(scores)):
+        #     print(f"Round{i+1}:{scores[i]} points")
             
             
 def welcome(self): #Ashley Kharbanda
@@ -169,3 +181,4 @@ score of 100")
         else:
             print("I'm sorry to hear that! Goodbye!")
             break
+        
