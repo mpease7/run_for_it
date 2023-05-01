@@ -49,7 +49,7 @@ class Players: #Lily Dinh
                 unpacked_set_values = []
                 for roll_num, roll in enumerate(self.set_rolls):
                     unpacked_set_values.append((roll_num+1, roll))
-                return unpacked_set_values
+                return self.unpacked_set_values
                     #roll_num+1 because the index starts at 0
                     #returning it so that if another method calls this method
                     #they can access the unpacked_set_values
@@ -91,7 +91,7 @@ class Players: #Lily Dinh
             combined_list = list(combine)
             print(f"You rolled: {combined_list}")
 
-            for tup in unpacked_set_values: #HOW FIX???
+            for tup in self.unpacked_set_values: 
                 if tup[0] == tup[1]:
                     get_dice.append(tup[1])
             print(f"Your sequence: {get_dice}")
