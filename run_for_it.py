@@ -3,7 +3,7 @@
 import random
 import matplotlib.pyplot as plt
 
-class Players: #Lily Dinh
+class Player: #Lily Dinh
     """Represents a player in the game
 
     Attributes:
@@ -20,7 +20,7 @@ class Players: #Lily Dinh
         """
         self.name = name
         self.points = 0
-        self.rolls = [3,5,4,2,1,6,2,4,3,5,1,6,4,5,6,3,2,1,3,4,5,3]
+        self.rolls = []
 
     def roll(self): #Maria Master
         """ Rolling a dice 6 times and adding the values to a list.
@@ -123,8 +123,9 @@ class Players: #Lily Dinh
             they will not be able to take the other player point.
         
         
-        """        
-    def history_score(self): # Beza Ermias
+        """ 
+    @classmethod       
+    def history_score(cls,player_one,player_two): # Beza Ermias
         """
         The player history score
         
@@ -132,14 +133,26 @@ class Players: #Lily Dinh
             scores(int): the score that will be displayed once the players ends
             the game.
         """
+        fig,(bar1,bar2) = plt.subplots(1,2)
+        fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
-        for roll in self.rolls:
+        for roll in player_one.rolls:
             rolled_charts[roll] = rolled_charts[roll]+1
         print(rolled_charts)
-        plt.bar(rolled_charts.keys(),rolled_charts.values())
-        plt.xlabel("Dice Rolls")
-        plt.ylabel("Count")
-        plt.title(f"Dice Roll By {self.name}")
+        bar1.bar(rolled_charts.keys(),rolled_charts.values())
+        bar1.set_xlabel("Dice Rolls")
+        bar1.set_ylabel("Count")
+        bar1.set_title(f"Dice Roll By {player_one.name}")
+
+        
+        rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
+        for roll in player_two.rolls:
+            rolled_charts[roll] = rolled_charts[roll]+1
+        print(rolled_charts)
+        bar2.bar(rolled_charts.keys(),rolled_charts.values())
+        bar2.set_xlabel("Dice Rolls")
+        bar2.set_ylabel("Count")
+        bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
         
         # for i in range(len(scores)):
@@ -182,3 +195,10 @@ score of 100")
             print("I'm sorry to hear that! Goodbye!")
             break
         
+p = Player("Ana")
+p2 = Player("Joe")
+p.rolls = [1,3,4,5,6,2,3,4,5,5,2,1,2,3,2,1]
+p2.rolls = [2,4,5,3,4,5,6,4,3,2,3,4,5,4,3,4]
+p.points = 98
+p2.points = 77
+p.history_score(p,p2)
