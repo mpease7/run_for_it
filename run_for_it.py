@@ -233,7 +233,8 @@ score of 100")
                 break
             
     game_winner = max(player_objects, key=lambda p: p.score)
-    print(f"Congratulations {game_winner.name}!")
+    print(f"Congratulations {game_winner.name}! \
+You are the winner of Run For It")
 
 # these are just tester for the pyplot
 p = Player("Ana")
