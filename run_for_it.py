@@ -172,6 +172,22 @@ class Player: #Lily Dinh
         bar2.set_ylabel("Count")
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
+        
+        def __lt__(self, other):
+            """ Compares the two players based on their total points and gives an update.
+        
+            Args:
+                other (Players): The other Player instance object compared to.
+            Returns:
+                bool: Would retirn True if player 1 total points is less than player 2.
+            """
+            
+            if self.points < other.points:
+                print(f"{self.name} currently has less points than {other.name}")
+            return self.points < other.points 
+        
+        def __str__(self):
+            return f"{self.name}: {self.points} points"
                     
             
 def main(players_n):
