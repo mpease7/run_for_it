@@ -174,16 +174,14 @@ class Player: #Lily Dinh
         plt.show()
                     
             
-def main(players_n):
+def main(players):
     """The main program the code will run in
     """
-    players = []
-    for people in players_n:
-        players.append(Player(people))
+    player_objects = [Player(name) for name in players]
     print("===================================================================")
-    #Since the argument for the send player hasn't been made, I will replace
-    #"self.name's friend to their name instead
-    print(f"Welcome {players_n} to Run For It!!")
+    print(f"Welcome to Run For It!! \nLets welcome the players!!")
+    for player in player_objects:
+        print(f"*{player.name}*")
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
@@ -211,15 +209,12 @@ score of 100")
         else:
             print("I'm sorry to hear that! Goodbye!")
             exit()
-    current_player = players[0]
-    while not current_player.has_won():
-        for player in players:
-            print(f"Its {current_player}'s turn!")
-            current_player.turn()
-            if current_player == players[0]:
-                current_player = player[1]
-            else:
-                current_player = player[0]
+    while not any([player.has_won() for player in player_objects]):
+        for player in player_objects:
+            print(f"Its {player.name}'s turn!")
+            player.turn()
+            if player.has_won():
+                break
 
 # these are just tester for the pyplot
 p = Player("Ana")
