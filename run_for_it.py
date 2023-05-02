@@ -2,6 +2,8 @@
 
 import random
 import matplotlib.pyplot as plt
+from argparse import ArgumentParser
+import sys
 
 class Player: #Lily Dinh
     """Represents a player in the game
