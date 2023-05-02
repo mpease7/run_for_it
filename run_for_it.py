@@ -64,6 +64,7 @@ class Player: #Lily Dinh
         """ 
         sequence = {1,2,3,4,5,6} #for testing purposes
         get_dice = []
+        number = 0
         
         if 1 not in self.sorted_rolls: #replace w/ sorted frm sorting_sequences method
             count = 0
@@ -100,15 +101,25 @@ class Player: #Lily Dinh
 
             print("Roll again!") if again == 'yes' else print("Turn over")
         
-        if again == 'yes': #if player tests luck and rolls again they have to get a number that continues the sequence
-            new_roll = []
-            rolling = 6 - len(get_dice)
-            for i in range(rolling):
-                dice = random.randint(1, 6)
-                new_roll.append(dice)
-                x = sorted(new_roll)
-            print(f"You rolled: {x}")
-            print("More points!") if get_dice[-1] + 1 in x else print("Turn over! no points")
+        if again == 'yes':
+                new_roll = []
+                rolling = 6 - len(get_dice)
+                for i in range(rolling):
+                    dice = random.randint(1, 6)
+                    new_roll.append(dice)
+                    x = sorted(new_roll)
+                print(f"You rolled: {x}")
+                if get_dice[-1] + 1 in x:
+                    new = set(x) | set(get_dice)
+                    get_dice = list(new)
+                else:
+                    get_dice = []
+        
+        for items in get_dice:
+            number += 1
+            self.score =+ number*5
+
+        print(f"Your score is {self.score}")   
             
         
 
