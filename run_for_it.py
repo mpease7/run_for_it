@@ -127,11 +127,15 @@ class Player: #Lily Dinh
     @classmethod       
     def history_score(cls,player_one,player_two): # Beza Ermias
         """
-        The player history score
+        Shows a bar graph of the dice rolls that players one and two
+        made throughout the game, along with their final results. 
+        
         
         Args:
-            scores(int): the score that will be displayed once the players ends
-            the game.
+            player_one (Player): The first player
+            player_two (Player): The second player 
+            
+            
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
@@ -154,10 +158,7 @@ class Player: #Lily Dinh
         bar2.set_ylabel("Count")
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
-        
-        # for i in range(len(scores)):
-        #     print(f"Round{i+1}:{scores[i]} points")
-            
+                    
             
 def welcome(self): #Ashley Kharbanda
     """Display to users the rules of the game with an 
