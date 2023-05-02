@@ -231,6 +231,9 @@ score of 100")
             player.turn()
             if player.has_won():
                 break
+            
+    game_winner = max(player_objects, key=lambda p: p.score)
+    print(f"Congratulations {game_winner.name}!")
 
 # these are just tester for the pyplot
 p = Player("Ana")
