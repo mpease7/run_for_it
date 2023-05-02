@@ -122,7 +122,8 @@ class Player: #Lily Dinh
         print(f"Your score is {self.score}")   
             
         
-
+    def has_won(self):
+        return self.points >= 100
         
             
     def sabotaging_points(perfect_sequence): # Beza Ermias
@@ -171,14 +172,16 @@ class Player: #Lily Dinh
         plt.show()
                     
             
-def welcome(self): #Ashley Kharbanda
-    """Display to users the rules of the game with an 
-            example roll
+def main(players_n):
+    """The main program the code will run in
     """
+    players = []
+    for people in players_n:
+        players.append(Player(people))
     print("===================================================================")
     #Since the argument for the send player hasn't been made, I will replace
     #"self.name's friend to their name instead
-    print(f"Welcome {self.name} and {self.name}'s friend to Run For It!!")
+    print(f"Welcome {players_n} to Run For It!!")
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
@@ -197,15 +200,24 @@ score of 100")
     print("===================================================================")
     while True:
         play_choice = (input("Would you like to keep playing? Type 'Y' or \
-    'N'").lower().strip())
+'N'").lower().strip())
         if play_choice[0] not in ["y","n"]:
             print("Invalid choice, please write 'Y' or 'N'")
         elif play_choice == "y":
             print("Have Fun!")
-            break #test for now, otherwise prints game board and starts game
+            break 
         else:
             print("I'm sorry to hear that! Goodbye!")
-            break
+            exit()
+    current_player = players[0]
+    while not current_player.has_won():
+        for player in players:
+            print(f"Its {current_player}'s turn!")
+            current_player.turn()
+            if current_player == players[0]:
+                current_player = player[1]
+            else:
+                current_player = player[0]
 
 # these are just tester for the pyplot
 p = Player("Ana")
