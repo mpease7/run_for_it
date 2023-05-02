@@ -104,24 +104,35 @@ class Player: #Lily Dinh
             print("Roll again!") if again == 'yes' else print("Turn over")
         
         if again == 'yes':
-                new_roll = []
-                rolling = 6 - len(get_dice)
-                for i in range(rolling):
-                    dice = random.randint(1, 6)
-                    new_roll.append(dice)
-                    x = sorted(new_roll)
-                print(f"You rolled: {x}")
-                if get_dice[-1] + 1 in x:
-                    new = set(x) | set(get_dice)
-                    get_dice = list(new)
-                else:
-                    get_dice = []
+            new_roll = []
+            rolling = 6 - len(get_dice)
+            for i in range(rolling):
+                dice = random.randint(1, 6)
+                new_roll.append(dice)
+                new_set = set(sorted(new_roll))
+            print(f"You rolled: {new_roll}")
+            
+            if get_dice[-1] + 1 in new_set:
+                get_dice = []
+                next = new_set | set(get_dice)
+                
+                unpacked_set_values = []
+                for roll_num, roll in enumerate(next):
+                    unpacked_set_values.append((roll_num+1, roll))
+
+                for tup in unpacked_set_values:
+                    if tup[0] == tup[1]:
+                        get_dice.append(tup[1])
+                print(f"Your sequence: {get_dice}")
+                    
+            else:
+                get_dice = []
         
         for items in get_dice:
             number += 1
             self.score =+ number*5
 
-        print(f"Your score is {self.score}")   
+        print(f"Your score is {self.score}") 
             
         
     def has_won(self):
