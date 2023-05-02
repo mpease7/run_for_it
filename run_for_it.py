@@ -194,7 +194,8 @@ score of 100")
         else:
             print("I'm sorry to hear that! Goodbye!")
             break
-        
+
+# these are just tester for the pyplot
 p = Player("Ana")
 p2 = Player("Joe")
 p.rolls = [1,3,4,5,6,2,3,4,5,5,2,1,2,3,2,1]
