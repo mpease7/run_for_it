@@ -51,7 +51,7 @@ class Player: #Lily Dinh
                 unpacked_set_values = []
                 for roll_num, roll in enumerate(self.set_rolls):
                     unpacked_set_values.append((roll_num+1, roll))
-                return self.unpacked_set_values
+                return unpacked_set_values
                     #roll_num+1 because the index starts at 0
                     #returning it so that if another method calls this method
                     #they can access the unpacked_set_values
@@ -104,35 +104,24 @@ class Player: #Lily Dinh
             print("Roll again!") if again == 'yes' else print("Turn over")
         
         if again == 'yes':
-            new_roll = []
-            rolling = 6 - len(get_dice)
-            for i in range(rolling):
-                dice = random.randint(1, 6)
-                new_roll.append(dice)
-                new_set = set(sorted(new_roll))
-            print(f"You rolled: {new_roll}")
-            
-            if get_dice[-1] + 1 in new_set:
-                get_dice = []
-                next = new_set | set(get_dice)
-                
-                unpacked_set_values = []
-                for roll_num, roll in enumerate(next):
-                    unpacked_set_values.append((roll_num+1, roll))
-
-                for tup in unpacked_set_values:
-                    if tup[0] == tup[1]:
-                        get_dice.append(tup[1])
-                print(f"Your sequence: {get_dice}")
-                    
-            else:
-                get_dice = []
+                new_roll = []
+                rolling = 6 - len(get_dice)
+                for i in range(rolling):
+                    dice = random.randint(1, 6)
+                    new_roll.append(dice)
+                    x = sorted(new_roll)
+                print(f"You rolled: {x}")
+                if get_dice[-1] + 1 in x:
+                    new = set(x) | set(get_dice)
+                    get_dice = list(new)
+                else:
+                    get_dice = []
         
         for items in get_dice:
             number += 1
             self.score =+ number*5
 
-        print(f"Your score is {self.score}") 
+        print(f"Your score is {self.score}")   
             
         
     def has_won(self):
@@ -201,14 +190,16 @@ class Player: #Lily Dinh
             return f"{self.name}: {self.points} points"
                     
             
-def main(players):
+def main(players_n):
     """The main program the code will run in
     """
-    player_objects = [Player(name) for name in players]
+    players = []
+    for people in players_n:
+        players.append(Player(people))
     print("===================================================================")
-    print(f"Welcome to Run For It!! \nLets welcome the players!!")
-    for player in player_objects:
-        print(f"*{player.name}*")
+    #Since the argument for the send player hasn't been made, I will replace
+    #"self.name's friend to their name instead
+    print(f"Welcome {players_n} to Run For It!!")
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
@@ -236,22 +227,22 @@ score of 100")
         else:
             print("I'm sorry to hear that! Goodbye!")
             exit()
-    while not any([player.has_won() for player in player_objects]):
-        for player in player_objects:
-            print(f"Its {player.name}'s turn!")
-            player.turn()
-            if player.has_won():
-                break
-            
-    game_winner = max(player_objects, key=lambda p: p.score)
-    print(f"Congratulations {game_winner.name}! \
-You are the winner of Run For It")
+    current_player = players[0]
+    while not current_player.has_won():
+        for player in players:
+            print(f"Its {current_player}'s turn!")
+            current_player.turn()
+            if current_player == players[0]:
+                current_player = player[1]
+            else:
+                current_player = player[0]
 
 # these are just tester for the pyplot
 p = Player("Ana")
 p2 = Player("Joe")
-p.rolls = [1,3,4,5,6,2,3,4,5,5,2,1,2,3,2,1]
+p.rolls = [1,2,4,1,6,2]
 p2.rolls = [2,4,5,3,4,5,6,4,3,2,3,4,5,4,3,4]
 p.points = 98
 p2.points = 77
-p.history_score(p,p2)
+print(p.sorting_sequence())
+# p.history_score(p,p2)
