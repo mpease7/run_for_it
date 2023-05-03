@@ -65,75 +65,59 @@ class Player: #Lily Dinh
     def turn(self): 
         """Experimental function that will end a players turn.
         """ 
-        sequence = {1,2,3,4,5,6} #for testing purposes
-        get_dice = []
+        self.roll()
+        self.sorting_sequence()
+        self.get_dice = []
         number = 0
         
-        if 1 not in self.sorted_rolls: #replace w/ sorted frm sorting_sequences method
-            count = 0
-            check = 3
-            prev = 0
-            chance = 0
-
-            for num in self.sorted_rolls:
-                if num == prev:
-                    count += 1
-                else:
-                    count = 1
-                prev = num
-
-                if count >= check:
-                    chance = 1
-
-            if chance == 1:
-                print("You got 3 of the same! Roll again!")
-            else:
-                print("You didn't roll a 1! Turn over! :p")
-                
+        print(f"You rolled: {self.rolls}")
+         
         if 1 in self.sorted_rolls:
-            combine =  self.set_rolls & sequence
-            combined_list = list(combine)
-            print(f"You rolled: {combined_list}")
 
             for tup in self.unpacked_set_values: 
                 if tup[0] == tup[1]:
-                    get_dice.append(tup[1])
-            print(f"Your sequence: {get_dice}")
+                    self.get_dice.append(tup[1])
+            print(f"Your sequence: {self.get_dice}")
 
-            again = input("Test your luck and roll again? (yes or no)").lower()
+            again = input("Test your luck and roll again? (yes or no) ").lower()
+            sleep(2)
 
             print("Roll again!") if again == 'yes' else print("Turn over")
-        
-        if again == 'yes':
-            new_roll = []
-            rolling = 6 - len(get_dice)
-            for i in range(rolling):
-                dice = random.randint(1, 6)
-                new_roll.append(dice)
-            new_set = set(sorted(new_roll))
-            print(f"You rolled: {new_roll}")
             
-            if get_dice[-1] + 1 in new_set:
-                next = new_set | set(get_dice)
+            if again == 'yes':
+                new_roll = []
+                rolling = 6 - len(self.get_dice)
+                for i in range(rolling):
+                    dice = random.randint(1, 6)
+                    new_roll.append(dice)
+                new_set = set(sorted(new_roll))
+                print(f"You rolled: {new_roll}")
                 
-                unpacked_set_values = []
-                get_dice = []
-                for roll_num, roll in enumerate(next):
-                    unpacked_set_values.append((roll_num+1, roll))
-
-                for tup in unpacked_set_values:
-                    if tup[0] == tup[1]:
-                        get_dice.append(tup[1])
-                print(f"Your sequence: {get_dice}")
+                if self.get_dice[-1] + 1 in new_set:
+                    next = new_set | set(self.get_dice)
+                    print(next)
                     
-            else:
-                get_dice = []
-        
-        for items in get_dice:
-            number += 1
-            self.score =+ number*5
+                    unpacked_set_values = []
+                    self.get_dice = []
+                    for roll_num, roll in enumerate(next):
+                        unpacked_set_values.append((roll_num+1, roll))
 
-        print(f"Your score is {self.score}") 
+                    for tup in unpacked_set_values:
+                        if tup[0] == tup[1]:
+                            self.get_dice.append(tup[1])
+                    print(f"Your new sequence: {self.get_dice}")
+                else:
+                    self.get_dice = []
+        else:
+            print("sorry no 1 in roll")
+            
+        for items in self.get_dice:
+            number += 1
+        self.points += (number * 5)
+                
+        self.rolls = []
+        print(f"You got a sequence of {number}! Your current score: {self.points}")
+ 
         
             
     def sabotaging_points(perfect_sequence): # Beza Ermias
