@@ -134,10 +134,6 @@ class Player: #Lily Dinh
             self.score =+ number*5
 
         print(f"Your score is {self.score}") 
-            
-        
-    def has_won(self):
-        return self.points >= 100
         
             
     def sabotaging_points(perfect_sequence): # Beza Ermias
