@@ -283,8 +283,8 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     """
     my_game = Game()
     
-    my_game.add_player(Player(player1))
-    my_game.add_player(Player(player2))
+    my_game.add_player(player1)
+    my_game.add_player(player2)
     
     welcome(player1,player2)
     
