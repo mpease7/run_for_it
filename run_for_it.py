@@ -199,7 +199,22 @@ class Player: #Lily Dinh
         
         def __str__(self):
             return f"{self.name}: {self.points} points"
-                    
+ 
+def read_scores(filepath):
+    with open(filepath, 'r', encoding = "utf-8") as f:
+        
+        player_scores = {}
+        for line in f:
+            name, score = line.split(",")
+            score = int(score.strip())
+            
+            if name not in player_scores:
+                player_scores[name] = score
+            else:
+                player_scores[name] = max(player_scores[name], score)
+        print(player_scores)
+        return player_scores
+                               
             
 def main(players):
     """The main program the code will run in
