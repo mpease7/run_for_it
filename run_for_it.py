@@ -235,16 +235,16 @@ def read_scores(filepath):
                 player_scores[name] = max(player_scores[name], score)
         print(player_scores)
         return player_scores
-                               
-            
-def main(players):
-    """The main program the code will run in
+ 
+def welcome(name1,name2): #Ashley Kharbanda, f-strings
+    """Display to users the rules of the game with an example roll
+    
+    Args:
+        name1 (str): the name of the first player 
+        name2 (str): the name of the second player
     """
-    player_objects = [Player(name) for name in players]
     print("===================================================================")
-    print(f"Welcome to Run For It!! \nLets welcome the players!!")
-    for player in player_objects:
-        print(f"*{player.name}*")
+    print(f"Welcome {name1} and {name2} to Run For It!!")
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
@@ -261,8 +261,8 @@ I will both keep having turns until one of us reach a \
 score of 100")
     print("===================================================================")
     while True:
-        play_choice = (input("Would you like to keep playing? Type 'Y' or 'N'"
-                             ).lower().strip())
+        play_choice = (input("Would you like to keep playing? Type 'Y' or \
+'N'").lower().strip())
         if play_choice[0] not in ["y","n"]:
             print("Invalid choice, please write 'Y' or 'N'")
         elif play_choice == "y":
@@ -271,17 +271,27 @@ score of 100")
         else:
             print("I'm sorry to hear that! Goodbye!")
             exit()
-    while not any([player.has_won() for player in player_objects]):
-        for player in player_objects:
-            print(f"Its {player.name}'s turn!")
-            player.turn()
-            if player.has_won():
-                break
-            
-    game_winner = max(player_objects, key=lambda p: p.score)
-    print(f"Congratulations {game_winner.name}! \
-You are the winner of Run For It")
-
+                                                  
+def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
+    #Optional Parameters
+    """Runs the game Run For It
+    
+    Args:
+        player1 (str, optional): The first player's name, default to "player1"
+        player2 (str, optional): The first player's name, default to "player2"
+        
+    """
+    my_game = Game()
+    
+    my_game.add_player(Player(player1))
+    my_game.add_player(Player(player2))
+    
+    welcome(player1,player2)
+    
+    while not my_game.winner:
+        my_game.round()
+        my_game.check()
+       
 # these are just tester for the pyplot
 p = Player("Ana")
 p2 = Player("Joe")
