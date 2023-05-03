@@ -227,22 +227,21 @@ def main(players):
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
-sequence, but if you don't, your turn will end. \n3)If you roll a one, or 3 \
-of the same number, you \
+sequence, but if you don't, your turn will end. \n3)If you roll a one, you \
 have the option to roll your remaining dice to increase your sequence, \
 but if you do not roll a number to continue the sequence, you will lose \
 all your points for that round.")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("Example: \nRoll: 1,3,4,4,5,6 \nI will choose to roll the \
 remaining 5 again because I got a 1 in my sequence \nNew Role: \
-1,2,3,3,5,6 \nBecause I have a sequence of 1,2,3 my score will \
+1,2,3,3,6 \nBecause I have a sequence of 1,2,3 my score will \
 translate to 15 points and my turn will be over \nMy friend and \
 I will both keep having turns until one of us reach a \
 score of 100")
     print("===================================================================")
     while True:
-        play_choice = (input("Would you like to keep playing? Type 'Y' or \
-'N'").lower().strip())
+        play_choice = (input("Would you like to keep playing? Type 'Y' or 'N'"
+                             ).lower().strip())
         if play_choice[0] not in ["y","n"]:
             print("Invalid choice, please write 'Y' or 'N'")
         elif play_choice == "y":
