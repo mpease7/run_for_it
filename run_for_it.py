@@ -109,14 +109,14 @@ class Player: #Lily Dinh
             for i in range(rolling):
                 dice = random.randint(1, 6)
                 new_roll.append(dice)
-                new_set = set(sorted(new_roll))
+            new_set = set(sorted(new_roll))
             print(f"You rolled: {new_roll}")
             
             if get_dice[-1] + 1 in new_set:
-                get_dice = []
                 next = new_set | set(get_dice)
                 
                 unpacked_set_values = []
+                get_dice = []
                 for roll_num, roll in enumerate(next):
                     unpacked_set_values.append((roll_num+1, roll))
 
