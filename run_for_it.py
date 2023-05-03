@@ -4,6 +4,7 @@ import random
 import matplotlib.pyplot as plt
 from argparse import ArgumentParser
 import sys
+from time import sleep
 
 class Player: #Lily Dinh
     """Represents a player in the game
@@ -200,6 +201,30 @@ class Player: #Lily Dinh
         def __str__(self):
             return f"{self.name}: {self.points} points"
  
+class Game():
+    def __init__(self):
+        self.players = []
+        self.winner = False
+    
+    def add_player(self,name):
+        self.players.append(Player(name))
+        
+    def round(self):
+        for player in self.players:
+            print("===================================================================")
+            print("===================================================================")
+            print(f"{player.name} it's your turn")
+            player.turn()
+            sleep(2)
+            
+    def check(self):
+        for player in self.players:
+            if player.points >= 100:
+                print("===================================================================")
+                print(f"{player.name}'s score: {player.points}")
+                print(f"{player.name} Won!!")
+                self.winner = True
+
 def read_scores(filepath):
     with open(filepath, 'r', encoding = "utf-8") as f:
         
