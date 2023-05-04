@@ -24,6 +24,7 @@ class Player: #Lily Dinh
         self.name = name
         self.points = 0
         self.rolls = []
+        self.roll_history = []
 
     def roll(self): #Maria Master
         """ Rolling a dice 6 times and adding the values to a list.
@@ -52,7 +53,7 @@ class Player: #Lily Dinh
                 unpacked_set_values = []
                 for roll_num, roll in enumerate(self.set_rolls):
                     unpacked_set_values.append((roll_num+1, roll))
-                return self.unpacked_set_values
+                return unpacked_set_values
                     #roll_num+1 because the index starts at 0
                     #returning it so that if another method calls this method
                     #they can access the unpacked_set_values
@@ -65,6 +66,7 @@ class Player: #Lily Dinh
     def turn(self): # Madison Pease - set operations
         """Allows the player to take a turn and how a sequence forms 
         """ 
+        self.rolls = []
         self.roll()
         self.sorting_sequence()
         self.get_dice = []
@@ -115,7 +117,7 @@ class Player: #Lily Dinh
             number += 1
         self.points += (number * 5)
                 
-        self.rolls = []
+        self.roll_history.extend(self.rolls)
         print(f"You got a sequence of {number}! Your current score: {self.points}")
  
         
@@ -146,7 +148,7 @@ class Player: #Lily Dinh
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
-        for roll in player_one.rolls:
+        for roll in player_one.roll_history:
             rolled_charts[roll] = rolled_charts[roll]+1
         print(rolled_charts)
         bar1.bar(rolled_charts.keys(),rolled_charts.values())
@@ -156,7 +158,7 @@ class Player: #Lily Dinh
 
         
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
-        for roll in player_two.rolls:
+        for roll in player_two.roll_history:
             rolled_charts[roll] = rolled_charts[roll]+1
         print(rolled_charts)
         bar2.bar(rolled_charts.keys(),rolled_charts.values())
@@ -275,16 +277,12 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     while not my_game.winner:
         my_game.round()
         my_game.check()
+    
+    print("Here are our previous players' scores: ")
+    read_scores("players_highest_scores.txt")
+    print(f"\n{player1}'s and {player2}'s rolls: ")
+    my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
-# these are just tester for the pyplot
-p = Player("Ana")
-p2 = Player("Joe")
-p.rolls = [1,3,4,5,6,2,3,4,5,5,2,1,2,3,2,1]
-p2.rolls = [2,4,5,3,4,5,6,4,3,2,3,4,5,4,3,4]
-p.points = 98
-p2.points = 77
-p.history_score(p,p2)
-
 def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim 
     """ Parse command-line arguments.
     
