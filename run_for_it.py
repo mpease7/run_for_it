@@ -62,8 +62,8 @@ class Player: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-    def turn(self): 
-        """Experimental function that will end a players turn.
+    def turn(self): # Madison Pease - set operations
+        """Allows the player to take a turn and how a sequence forms 
         """ 
         self.roll()
         self.sorting_sequence()
