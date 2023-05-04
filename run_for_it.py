@@ -65,6 +65,7 @@ class Player: #Lily Dinh
     def turn(self): # Madison Pease - set operations
         """Allows the player to take a turn and how a sequence forms 
         """ 
+        self.rolls = []
         self.roll()
         self.sorting_sequence()
         self.get_dice = []
