@@ -280,15 +280,6 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     print(f"\n{player1}'s and {player2}'s rolls: ")
     my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
-# these are just tester for the pyplot
-p = Player("Ana")
-p2 = Player("Joe")
-p.rolls = [1,2,4,1,6,2]
-p2.rolls = [2,4,5,3,4,5,6,4,3,2,3,4,5,4,3,4]
-p.points = 98
-p2.points = 77
-p.history_score(p,p2)
-
 def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim 
     """ Parse command-line arguments.
     
