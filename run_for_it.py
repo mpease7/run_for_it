@@ -50,10 +50,10 @@ class Player: #Lily Dinh
             set_values = len(self.set_rolls)
                 
             if set_values <= 6:
-                unpacked_set_values = []
+                self.unpacked_set_values = []
                 for roll_num, roll in enumerate(self.set_rolls):
-                    unpacked_set_values.append((roll_num+1, roll))
-                return unpacked_set_values
+                    self.unpacked_set_values.append((roll_num+1, roll))
+                return self.unpacked_set_values
                     #roll_num+1 because the index starts at 0
                     #returning it so that if another method calls this method
                     #they can access the unpacked_set_values
@@ -287,8 +287,8 @@ def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim
     """ Parse command-line arguments.
     
     Expect two mandatory arguments:
-        - player1_name: name of the first player
-        - player2_name: name of the second player
+        - player1_name: name of the first player (default is "player1")
+        - player2_name: name of the second player (default is "player2")
     
     Args:
         arglist (list of str): arguments from the command line.
