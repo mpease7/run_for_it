@@ -295,7 +295,7 @@ def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim
         arglist (list of str): arguments from the command line.
     
     Returns:
-        namespace: the parsed arguments, as a namespace.
+        namespace: the parsed arguments, as a namespace. 
     """
     parser = ArgumentParser()
     parser.add_argument("player1_name", help = "name of player 1")
