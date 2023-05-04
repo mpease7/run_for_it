@@ -4,6 +4,7 @@ from argparse import ArgumentParser
 import random
 import matplotlib.pyplot as plt
 import sys 
+from time import sleep
 
 class Player: #Lily Dinh
     """Represents a player in the game
