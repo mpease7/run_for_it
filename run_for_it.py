@@ -104,18 +104,29 @@ class Player: #Lily Dinh
             print("Roll again!") if again == 'yes' else print("Turn over")
         
         if again == 'yes':
-                new_roll = []
-                rolling = 6 - len(get_dice)
-                for i in range(rolling):
-                    dice = random.randint(1, 6)
-                    new_roll.append(dice)
-                    x = sorted(new_roll)
-                print(f"You rolled: {x}")
-                if get_dice[-1] + 1 in x:
-                    new = set(x) | set(get_dice)
-                    get_dice = list(new)
-                else:
-                    get_dice = []
+            new_roll = []
+            rolling = 6 - len(get_dice)
+            for i in range(rolling):
+                dice = random.randint(1, 6)
+                new_roll.append(dice)
+            new_set = set(sorted(new_roll))
+            print(f"You rolled: {new_roll}")
+            
+            if get_dice[-1] + 1 in new_set:
+                next = new_set | set(get_dice)
+                
+                unpacked_set_values = []
+                get_dice = []
+                for roll_num, roll in enumerate(next):
+                    unpacked_set_values.append((roll_num+1, roll))
+
+                for tup in unpacked_set_values:
+                    if tup[0] == tup[1]:
+                        get_dice.append(tup[1])
+                print(f"Your sequence: {get_dice}")
+                    
+            else:
+                get_dice = []
         
         for items in get_dice:
             number += 1
@@ -188,7 +199,22 @@ class Player: #Lily Dinh
         
         def __str__(self):
             return f"{self.name}: {self.points} points"
-                    
+ 
+def read_scores(filepath):
+    with open(filepath, 'r', encoding = "utf-8") as f:
+        
+        player_scores = {}
+        for line in f:
+            name, score = line.split(",")
+            score = int(score.strip())
+            
+            if name not in player_scores:
+                player_scores[name] = score
+            else:
+                player_scores[name] = max(player_scores[name], score)
+        print(player_scores)
+        return player_scores
+                               
             
 def main(players_n):
     """The main program the code will run in
@@ -203,22 +229,21 @@ def main(players_n):
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
-sequence, but if you don't, your turn will end. \n3)If you roll a one, or 3 \
-of the same number, you \
+sequence, but if you don't, your turn will end. \n3)If you roll a one, you \
 have the option to roll your remaining dice to increase your sequence, \
 but if you do not roll a number to continue the sequence, you will lose \
 all your points for that round.")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("Example: \nRoll: 1,3,4,4,5,6 \nI will choose to roll the \
 remaining 5 again because I got a 1 in my sequence \nNew Role: \
-1,2,3,3,5,6 \nBecause I have a sequence of 1,2,3 my score will \
+1,2,3,3,6 \nBecause I have a sequence of 1,2,3 my score will \
 translate to 15 points and my turn will be over \nMy friend and \
 I will both keep having turns until one of us reach a \
 score of 100")
     print("===================================================================")
     while True:
-        play_choice = (input("Would you like to keep playing? Type 'Y' or \
-'N'").lower().strip())
+        play_choice = (input("Would you like to keep playing? Type 'Y' or 'N'"
+                             ).lower().strip())
         if play_choice[0] not in ["y","n"]:
             print("Invalid choice, please write 'Y' or 'N'")
         elif play_choice == "y":
