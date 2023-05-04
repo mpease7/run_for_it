@@ -1,7 +1,10 @@
 """This is a implementation of the game 'Run For It'"""
 
+from argparse import ArgumentParser
 import random
 import matplotlib.pyplot as plt
+import sys
+
 
 class Player: #Lily Dinh
     """Represents a player in the game
@@ -32,7 +35,7 @@ class Player: #Lily Dinh
             roll = random.randint(1, 6)
             self.rolls.append(roll)
 
-    def sorting_sequence(self): #Maria Master
+    def sorting_sequence(self): #Maria Master -- list.sort() credit claim
         """ An experimental function. Sorts a list of dice roll values and extracts
             the unique values to return the roll number and the roll value.
             
@@ -215,3 +218,26 @@ p2.rolls = [2,4,5,3,4,5,6,4,3,2,3,4,5,4,3,4]
 p.points = 98
 p2.points = 77
 p.history_score(p,p2)
+
+def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim 
+    """ Parse command-line arguments.
+    
+    Expect two mandatory arguments:
+        - player1_name: name of the first player
+        - player2_name: name of the second player
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+    
+    Returns:
+        namespace: the parsed arguments, as a namespace.
+    """
+    parser = ArgumentParser()
+    parser.add_argument("player1_name", help = "name of player 1")
+    parser.add_argument("player2_name", help = "name of player 2")
+    return parser.parse_args(arglist)
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main(args.player1_name, args.player2_name)
+    
