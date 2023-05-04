@@ -3,8 +3,7 @@
 from argparse import ArgumentParser
 import random
 import matplotlib.pyplot as plt
-import sys
-
+import sys 
 
 class Player: #Lily Dinh
     """Represents a player in the game
@@ -62,70 +61,62 @@ class Player: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-    def turn(self): 
-        """Experimental function that will end a players turn.
+    def turn(self): # Madison Pease - set operations
+        """Allows the player to take a turn and how a sequence forms 
         """ 
-        sequence = {1,2,3,4,5,6} #for testing purposes
-        get_dice = []
+        self.roll()
+        self.sorting_sequence()
+        self.get_dice = []
         number = 0
         
-        if 1 not in self.sorted_rolls: #replace w/ sorted frm sorting_sequences method
-            count = 0
-            check = 3
-            prev = 0
-            chance = 0
-
-            for num in self.sorted_rolls:
-                if num == prev:
-                    count += 1
-                else:
-                    count = 1
-                prev = num
-
-                if count >= check:
-                    chance = 1
-
-            if chance == 1:
-                print("You got 3 of the same! Roll again!")
-            else:
-                print("You didn't roll a 1! Turn over! :p")
-                
+        print(f"You rolled: {self.rolls}")
+         
         if 1 in self.sorted_rolls:
-            combine =  self.set_rolls & sequence
-            combined_list = list(combine)
-            print(f"You rolled: {combined_list}")
 
             for tup in self.unpacked_set_values: 
                 if tup[0] == tup[1]:
-                    get_dice.append(tup[1])
-            print(f"Your sequence: {get_dice}")
+                    self.get_dice.append(tup[1])
+            print(f"Your sequence: {self.get_dice}")
 
-            again = input("Test your luck and roll again? (yes or no)").lower()
+            again = input("Test your luck and roll again? (yes or no) ").lower()
+            sleep(2)
 
             print("Roll again!") if again == 'yes' else print("Turn over")
-        
-        if again == 'yes':
+            
+            if again == 'yes':
                 new_roll = []
-                rolling = 6 - len(get_dice)
+                rolling = 6 - len(self.get_dice)
                 for i in range(rolling):
                     dice = random.randint(1, 6)
                     new_roll.append(dice)
-                    x = sorted(new_roll)
-                print(f"You rolled: {x}")
-                if get_dice[-1] + 1 in x:
-                    new = set(x) | set(get_dice)
-                    get_dice = list(new)
+                new_set = set(sorted(new_roll))
+                print(f"You rolled: {new_roll}")
+                
+                if self.get_dice[-1] + 1 in new_set:
+                    next = new_set | set(self.get_dice)
+                    print(next)
+                    
+                    unpacked_set_values = []
+                    self.get_dice = []
+                    for roll_num, roll in enumerate(next):
+                        unpacked_set_values.append((roll_num+1, roll))
+
+                    for tup in unpacked_set_values:
+                        if tup[0] == tup[1]:
+                            self.get_dice.append(tup[1])
+                    print(f"Your new sequence: {self.get_dice}")
                 else:
-                    get_dice = []
-        
-        for items in get_dice:
-            number += 1
-            self.score =+ number*5
-
-        print(f"Your score is {self.score}")   
+                    self.get_dice = []
+        else:
+            print("sorry no 1 in roll")
             
-        
-
+        for items in self.get_dice:
+            number += 1
+        self.points += (number * 5)
+                
+        self.rolls = []
+        print(f"You got a sequence of {number}! Your current score: {self.points}")
+ 
         
             
     def sabotaging_points(perfect_sequence): # Beza Ermias
@@ -172,44 +163,118 @@ class Player: #Lily Dinh
         bar2.set_ylabel("Count")
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
-                    
+        
+        def __lt__(self, other):
+            """ Compares the two players based on their total points and gives an update.
+        
+            Args:
+                other (Players): The other Player instance object compared to.
+            Returns:
+                bool: Would retirn True if player 1 total points is less than player 2.
+            """
             
-def welcome(self): #Ashley Kharbanda
-    """Display to users the rules of the game with an 
-            example roll
+            if self.points < other.points:
+                print(f"{self.name} currently has less points than {other.name}")
+            return self.points < other.points 
+        
+        def __str__(self):
+            return f"{self.name}: {self.points} points"
+ 
+class Game():
+    def __init__(self):
+        self.players = []
+        self.winner = False
+    
+    def add_player(self,name):
+        self.players.append(Player(name))
+        
+    def round(self):
+        for player in self.players:
+            print("===================================================================")
+            print("===================================================================")
+            print(f"{player.name} it's your turn")
+            player.turn()
+            sleep(2)
+            
+    def check(self):
+        for player in self.players:
+            if player.points >= 100:
+                print("===================================================================")
+                print(f"{player.name}'s score: {player.points}")
+                print(f"{player.name} Won!!")
+                self.winner = True
+
+def read_scores(filepath):
+    with open(filepath, 'r', encoding = "utf-8") as f:
+        
+        player_scores = {}
+        for line in f:
+            name, score = line.split(",")
+            score = int(score.strip())
+            
+            if name not in player_scores:
+                player_scores[name] = score
+            else:
+                player_scores[name] = max(player_scores[name], score)
+        print(player_scores)
+        return player_scores
+ 
+def welcome(name1,name2): #Ashley Kharbanda, f-strings
+    """Display to users the rules of the game with an example roll
+    
+    Args:
+        name1 (str): the name of the first player 
+        name2 (str): the name of the second player
     """
     print("===================================================================")
-    #Since the argument for the send player hasn't been made, I will replace
-    #"self.name's friend to their name instead
-    print(f"Welcome {self.name} and {self.name}'s friend to Run For It!!")
+    print(f"Welcome {name1} and {name2} to Run For It!!")
     print("The rules of the game are simple! First person to make it to \
 100 points wins!\n1)Each round, each player will roll six dice. \
 \n2)If you rolled the number one, you will begin your \
-sequence, but if you don't, your turn will end. \n3)If you roll a one, or 3 \
-of the same number, you \
+sequence, but if you don't, your turn will end. \n3)If you roll a one, you \
 have the option to roll your remaining dice to increase your sequence, \
 but if you do not roll a number to continue the sequence, you will lose \
 all your points for that round.")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("Example: \nRoll: 1,3,4,4,5,6 \nI will choose to roll the \
 remaining 5 again because I got a 1 in my sequence \nNew Role: \
-1,2,3,3,5,6 \nBecause I have a sequence of 1,2,3 my score will \
+1,2,3,3,6 \nBecause I have a sequence of 1,2,3 my score will \
 translate to 15 points and my turn will be over \nMy friend and \
 I will both keep having turns until one of us reach a \
 score of 100")
     print("===================================================================")
     while True:
         play_choice = (input("Would you like to keep playing? Type 'Y' or \
-    'N'").lower().strip())
+'N'").lower().strip())
         if play_choice[0] not in ["y","n"]:
             print("Invalid choice, please write 'Y' or 'N'")
         elif play_choice == "y":
             print("Have Fun!")
-            break #test for now, otherwise prints game board and starts game
+            break 
         else:
             print("I'm sorry to hear that! Goodbye!")
-            break
-
+            exit()
+                                                  
+def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
+    #Optional Parameters
+    """Runs the game Run For It
+    
+    Args:
+        player1 (str, optional): The first player's name, default to "player1"
+        player2 (str, optional): The first player's name, default to "player2"
+        
+    """
+    my_game = Game()
+    
+    my_game.add_player(player1)
+    my_game.add_player(player2)
+    
+    welcome(player1,player2)
+    
+    while not my_game.winner:
+        my_game.round()
+        my_game.check()
+       
 # these are just tester for the pyplot
 p = Player("Ana")
 p2 = Player("Joe")
