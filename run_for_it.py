@@ -115,7 +115,6 @@ class Player: #Lily Dinh
             number += 1
         self.points += (number * 5)
                 
-        self.rolls = []
         print(f"You got a sequence of {number}! Your current score: {self.points}")
  
         
@@ -275,6 +274,11 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     while not my_game.winner:
         my_game.round()
         my_game.check()
+    
+    print("Here are our previous players' scores: ")
+    read_scores("players_highest_scores.txt")
+    print(f"\n{player1}'s and {player2}'s rolls: ")
+    my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
 # these are just tester for the pyplot
 p = Player("Ana")
