@@ -24,6 +24,7 @@ class Player: #Lily Dinh
         self.name = name
         self.points = 0
         self.rolls = []
+        self.roll_history = []
 
     def roll(self): #Maria Master
         """ Rolling a dice 6 times and adding the values to a list.
@@ -116,6 +117,7 @@ class Player: #Lily Dinh
             number += 1
         self.points += (number * 5)
                 
+        self.roll_history.extend(self.rolls)
         print(f"You got a sequence of {number}! Your current score: {self.points}")
  
         
@@ -146,7 +148,7 @@ class Player: #Lily Dinh
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
-        for roll in player_one.rolls:
+        for roll in player_one.roll_history:
             rolled_charts[roll] = rolled_charts[roll]+1
         print(rolled_charts)
         bar1.bar(rolled_charts.keys(),rolled_charts.values())
@@ -156,7 +158,7 @@ class Player: #Lily Dinh
 
         
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
-        for roll in player_two.rolls:
+        for roll in player_two.roll_history:
             rolled_charts[roll] = rolled_charts[roll]+1
         print(rolled_charts)
         bar2.bar(rolled_charts.keys(),rolled_charts.values())
