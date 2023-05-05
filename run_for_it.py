@@ -46,6 +46,7 @@ class Player: #Lily Dinh
             Returns:
                 unpacked_set_values(list of tuples): the roll number and roll 
                 value.
+                None if players has more than 6 rolls.
                 
             Primary author:
                 Maria Master
@@ -312,8 +313,10 @@ def parse_args(arglist):
         ArgumentParser class.
     """
     parser = ArgumentParser()
-    parser.add_argument("-p1", "--player1_name",default= "player1", help = "name of player 1")
-    parser.add_argument("-p2", "--player2_name",default= "player2", help = "name of player 2")
+    parser.add_argument("-p1", "--player1_name",default= "player1", 
+                        help = "name of player 1")
+    parser.add_argument("-p2", "--player2_name",default= "player2", 
+                        help = "name of player 2")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
