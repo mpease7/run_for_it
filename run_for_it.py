@@ -1,8 +1,8 @@
 """This is a implementation of the game 'Run For It'"""
 
 from argparse import ArgumentParser
-import random
 import matplotlib.pyplot as plt
+import random
 import sys 
 from time import sleep
 
@@ -89,12 +89,12 @@ class Player: #Lily Dinh
             for tup in self.unpacked_set_values: 
                 if tup[0] == tup[1]:
                     self.get_dice.append(tup[1])
-            print(f"Your sequence: {self.get_dice}")
+            print(f"Your sequence: {self.get_dice}\n")
 
             again = input("Test your luck and roll again? (yes or no) ").lower()
             sleep(2)
 
-            print("Roll again!") if again == 'yes' else print("Turn over")
+            print("Roll again!\n") if again == 'yes' else print("Turn over\n")
             
             if again == 'yes':
                 new_roll = []
@@ -107,7 +107,6 @@ class Player: #Lily Dinh
                 
                 if self.get_dice[-1] + 1 in new_set:
                     next = new_set | set(self.get_dice)
-                    print(next)
                     
                     unpacked_set_values = []
                     self.get_dice = []
@@ -117,7 +116,7 @@ class Player: #Lily Dinh
                     for tup in unpacked_set_values:
                         if tup[0] == tup[1]:
                             self.get_dice.append(tup[1])
-                    print(f"Your new sequence: {self.get_dice}")
+                    print(f"Your new sequence: {self.get_dice}\n")
                 else:
                     self.get_dice = []
         else:
@@ -205,7 +204,7 @@ class Game():
         for player in self.players:
             print("===================================================================")
             print("===================================================================")
-            print(f"{player.name} it's your turn")
+            print(f"{player.name} it's your turn\n")
             player.turn()
             sleep(2)
             
