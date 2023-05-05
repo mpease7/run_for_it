@@ -1,2 +1,4 @@
 # run_for_it
-code for the dice game run for it
+An implementation of the dice game Run For It
+
+Language: Python
