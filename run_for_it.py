@@ -10,16 +10,21 @@ class Player: #Lily Dinh
     """Represents a player in the game
 
     Attributes:
-        name(str): The player's name
-        points(int): the total points earned from each player in the game
-        rolls(list): List that consists of the dice rolls made by the player 
+        name(str): The player's name.
+        points(int): the total points earned from each player in the game.
+        rolls(list): List that consists of the dice rolls made by the player.
+        roll_history(list): List of all the rolls the player makes during the 
+            game. 
     """
     
     def __init__(self, name):
         """ Initializes new player object with name given
 
         Args:
-            name (str): The player's name
+            name (str): see class documentation.
+            
+        Side effects:
+            Defines attributes 'name', 'points', 'rolls', 'roll_history'.
         """
         self.name = name
         self.points = 0
@@ -46,7 +51,6 @@ class Player: #Lily Dinh
             Returns:
                 unpacked_set_values(list of tuples): the roll number and roll 
                 value.
-                None if players has more than 6 rolls.
                 
             Primary author:
                 Maria Master
@@ -74,8 +78,18 @@ class Player: #Lily Dinh
         else:
             print(f"{self.name} has not rolled the dice 6 times yet.")
         
-    def turn(self): # Madison Pease - set operations
-        """Allows the player to take a turn and how a sequence forms 
+    def turn(self):
+        """Implements the rules of the game for each player's turn.
+        
+        Side effects:
+            Writes to stdout
+            Modifies self.rolls, self.roll_history, self.points.
+        
+        Primary author:
+            Madison Pease
+        
+        Technique claimed:
+            Set operations on sets.
         """ 
         self.rolls = []
         self.roll()
@@ -128,7 +142,8 @@ class Player: #Lily Dinh
         self.points += (number * 5)
                 
         self.roll_history.extend(self.rolls)
-        print(f"You got a sequence of {number}! Your current score: {self.points}")
+        print(f"You got a sequence of {number}!")
+        print(f"Your current score: {self.points}")
  
         
             
@@ -194,14 +209,44 @@ class Player: #Lily Dinh
             return f"{self.name}: {self.points} points"
  
 class Game():
+    """Class that plays the game.
+    
+    Attributes:
+        players (list): list of the names of the players
+        winner (bool): determines if a player has won the game or not.
+        
+    Primary author:
+        Madison Pease
+    """
     def __init__(self):
+        """Initalizes the players and status of game.
+        
+        Side effects:
+            Defines attributes 'players' and 'winner'.
+        """
         self.players = []
         self.winner = False
     
     def add_player(self,name):
+        """Add player object to self.players.
+        
+        Args:
+            name (str): inherts player name from Player class.
+            
+        Side effects:
+            Modifies self.players by appending Player objects to it.
+            
+        Technique claimed:
+            Composition of two custom classes.
+        """
         self.players.append(Player(name))
         
     def round(self):
+        """Alternates rounds between players.
+        
+        Side effects:
+            Printing the current players turn.
+        """
         for player in self.players:
             print("===================================================================")
             print("===================================================================")
@@ -210,6 +255,12 @@ class Game():
             sleep(2)
             
     def check(self):
+        """Checks for the winner of the game.
+        
+        Side effects:
+            Prints winner's score and name
+            Modifies self.winner to True if game over.
+        """
         for player in self.players:
             if player.points >= 100:
                 print("===================================================================")
@@ -313,10 +364,8 @@ def parse_args(arglist):
         ArgumentParser class.
     """
     parser = ArgumentParser()
-    parser.add_argument("-p1", "--player1_name",default= "player1", 
-                        help = "name of player 1")
-    parser.add_argument("-p2", "--player2_name",default= "player2", 
-                        help = "name of player 2")
+    parser.add_argument("-p1", "--player1_name",default= "player1", help = "name of player 1")
+    parser.add_argument("-p2", "--player2_name",default= "player2", help = "name of player 2")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
