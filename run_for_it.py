@@ -201,7 +201,7 @@ class Game():
             
     def check(self):
         for player in self.players:
-            if player.points >= 50:
+            if player.points >= 25:
                 print("===================================================================")
                 print(f"{player.name}'s score: {player.points}")
                 print(f"{player.name} Won!!")
