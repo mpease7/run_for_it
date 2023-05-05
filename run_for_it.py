@@ -46,6 +46,7 @@ class Player: #Lily Dinh
             Returns:
                 unpacked_set_values(list of tuples): the roll number and roll 
                 value.
+                None if players has more than 6 rolls.
                 
             Primary author:
                 Maria Master
