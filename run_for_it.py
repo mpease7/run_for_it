@@ -26,22 +26,32 @@ class Player: #Lily Dinh
         self.rolls = []
         self.roll_history = []
 
-    def roll(self): #Maria Master
+    def roll(self): 
         """ Rolling a dice 6 times and adding the values to a list.
+
+        Side effect:
+            Modifying the value of self.rolls by appending values. 
         
-            Raises:
-                ValueError: if a Player tries to roll more than 6 times. 
+        Primary author:
+            Maria Master
         """
         for roll in range(6):
             roll = random.randint(1, 6)
             self.rolls.append(roll)
 
-    def sorting_sequence(self): #Maria Master -- list.sort() credit claim
-        """ An experimental function. Sorts a list of dice roll values and extracts
-            the unique values to return the roll number and the roll value.
+    def sorting_sequence(self): 
+        """ Sorts a list of dice roll values and extracts the unique values to 
+            return the roll number and the roll value.
             
             Returns:
-                unpacked_set_values(list of tuples): the roll number and roll value.
+                unpacked_set_values(list of tuples): the roll number and roll 
+                value.
+                
+            Primary author:
+                Maria Master
+                
+            Technique claimed:
+                Sequence unpacking.
         """
         if len(self.rolls) == 6:
             self.sorted_rolls = sorted(self.rolls)
@@ -283,7 +293,7 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     print(f"\n{player1}'s and {player2}'s rolls: ")
     my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
-def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim 
+def parse_args(arglist):
     """ Parse command-line arguments.
     
     Expect two mandatory arguments:
@@ -295,6 +305,12 @@ def parse_args(arglist): #Maria Master -- ArgumentParser class credit claim
     
     Returns:
         namespace: the parsed arguments, as a namespace. 
+        
+    Primary author:
+        Maria Master
+        
+    Technique claimed:
+        ArgumentParser class.
     """
     parser = ArgumentParser()
     parser.add_argument("-p1", "--player1_name",default= "player1", help = "name of player 1")
