@@ -201,7 +201,7 @@ class Game():
             
     def check(self):
         for player in self.players:
-            if player.points >= 100:
+            if player.points >= 50:
                 print("===================================================================")
                 print(f"{player.name}'s score: {player.points}")
                 print(f"{player.name} Won!!")
@@ -279,7 +279,7 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
         my_game.check()
     
     print("Here are our previous players' scores: ")
-    read_scores("players_highest_scores.txt")
+    read_scores("players_highest_score.txt")
     print(f"\n{player1}'s and {player2}'s rolls: ")
     my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
