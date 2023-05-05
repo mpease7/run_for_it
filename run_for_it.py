@@ -265,7 +265,7 @@ class Game():
             if player.points >= 100:
                 print("===================================================================")
                 print(f"{player.name}'s score: {player.points}")
-                print(f"{player.name} Won!!")
+                print(f"{player.name} Won!!\n")
                 self.winner = True
 
 def read_scores(filepath):
