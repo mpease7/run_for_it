@@ -147,16 +147,31 @@ class Player: #Lily Dinh
  
         
             
-    def sabotaging_points(perfect_sequence): # Beza Ermias
+    def sabotaging_points(rolls,other_player): # Beza Ermias
         """
-        If a player gets a perfect sequence this will allow the user subtract two points from the other player
-        
+        A function that uses the current rounds's dice results to determine how many
+        sabotage points should be subtracted from the opposing player's total score. 
+                
         Args:
-            perfect_sequence(int): making sure that the person has a perfect sequence which is 6 and less than that
-            they will not be able to take the other player point.
-        
-        
+            rolls(list[int]): A list of intergers representing the dice rolls in the
+            current round
+            other_player(Player): A instance of the Player class representing the player. 
+            
+        Primary author:
+            Beza Ermias 
         """ 
+        lastrolls = {}
+        for r in rolls:
+            lastrolls[r]+=1
+        s_points = 0
+        for r in rolls:   
+            s_points = r * lastrolls[r] if lastrolls[r] >= 4 else "Cannot sabotage in this round!"                     
+        if isinstance(s_points, int):
+            other_player.points -= s_points
+        else:
+            print(s_points)
+            
+    
     @classmethod       
     def history_score(cls,player_one,player_two): # Beza Ermias
         """
@@ -168,6 +183,8 @@ class Player: #Lily Dinh
             player_one (Player): The first player
             player_two (Player): The second player 
             
+        Primary author:
+            Beza Ermias 
             
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
@@ -338,6 +355,7 @@ def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
     while not my_game.winner:
         my_game.round()
         my_game.check()
+        
     
     print("Here are our previous players' scores: ")
     read_scores("players_highest_score.txt")
