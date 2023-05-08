@@ -300,12 +300,23 @@ def read_scores(filepath):
         print(player_scores)
         return player_scores
  
-def welcome(name1,name2): #Ashley Kharbanda, f-strings
+def welcome(name1,name2): 
     """Display to users the rules of the game with an example roll
-    
+  
     Args:
         name1 (str): the name of the first player 
         name2 (str): the name of the second player
+    
+    Side effects:
+        Prints welcome message with rules to the console. Prints welcome or 
+            goodbye message to the console
+        
+    Primary author:
+        Ashley Kharbanda
+        
+    Technique claimed:
+        Use of f-strings.
+    
     """
     print("===================================================================")
     print(f"Welcome {name1} and {name2} to Run For It!!")
@@ -336,15 +347,24 @@ score of 100")
             print("I'm sorry to hear that! Goodbye!")
             exit()
                                                   
-def main(player1 = "player1", player2 = "player2"): #Ashley Kharbanda
-    #Optional Parameters
+def main(player1 = "player1", player2 = "player2"):
     """Runs the game Run For It
-    
+  
     Args:
         player1 (str, optional): The first player's name, default to "player1"
         player2 (str, optional): The first player's name, default to "player2"
+    
+    Side effects:
+        Prints player1's and player2's rolls to the console. Prints previous 
+            players' scores to the console
         
+    Primary author:
+        Ashley Kharbanda
+        
+    Technique claimed:
+        Use of Optional Parameters.    
     """
+    
     my_game = Game()
     
     my_game.add_player(player1)
