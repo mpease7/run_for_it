@@ -209,7 +209,7 @@ class Player: #Lily Dinh
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
         
-        def __lt__(self, other):
+        def __lt__(self, other): # Lily Dinh Magic Methods
             """ Compares the two players based on their total points and gives an update.
         
             Args:
@@ -223,6 +223,11 @@ class Player: #Lily Dinh
             return self.points < other.points 
         
         def __str__(self):
+            """ Returns a string representation of the Player object.
+
+            Returns:
+                str: A string that represents the player's name and thier points.
+            """
             return f"{self.name}: {self.points} points"
  
 class Game():
@@ -285,7 +290,16 @@ class Game():
                 print(f"{player.name} Won!!\n")
                 self.winner = True
 
-def read_scores(filepath):
+def read_scores(filepath): #Lily Dinh with statements
+    """ Reads the textfile in utf-8 that consists of the players name and scores
+
+    Args:
+        filepath (str): The path to the trxt file with the names and highest scores
+
+    Returns:
+        dict: A dictionary containing players' names as keys and their
+        highest socres as values.
+    """
     with open(filepath, 'r', encoding = "utf-8") as f:
         
         player_scores = {}
