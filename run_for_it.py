@@ -215,7 +215,7 @@ class Player: #Lily Dinh
             Args:
                 other (Players): The other Player instance object compared to.
             Returns:
-                bool: Would retirn True if player 1 total points is less than player 2.
+                bool: Would return True if player 1 total points is less than player 2.
             """
             
             if self.points < other.points:
