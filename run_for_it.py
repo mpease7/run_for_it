@@ -226,7 +226,7 @@ class Player:
             Technique claimed:
                 Magic methods.
             """
-            return f"{self.name}: {self.points} points"
+            return f"{self.name}'s score: {self.points}"
  
 class Game():
     """Class that plays the game.
@@ -321,7 +321,7 @@ class Game():
             if player.points >= 100:
                 print("========================================================\
 ===========")
-                print(f"{player.name}'s score: {player.points}")
+                print(player)
                 print(f"{player.name} Won!!\n")
                 self.winner = True
 
