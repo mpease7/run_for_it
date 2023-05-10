@@ -193,13 +193,15 @@ class Player:
         plt.show()
         
         def __lt__(self, other):
-            """ Compares the two players based on their total points and gives an update.
+            """ Compares the two players based on their total points and gives 
+                    an update.
         
             Args:
                 other (Players): The other Player instance object compared to.
                 
             Returns:
-                bool: Would return True if player 1 total points is less than player 2.
+                bool: Would return True if player 1 total points is less than 
+                    player 2.
                 
             Primary author:
                 Lily Dinh
