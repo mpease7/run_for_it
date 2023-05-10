@@ -18,7 +18,7 @@ class Player:
     """
     
     def __init__(self, name):
-        """ Initializes new player object with name given
+        """Initializes new player object with name given
 
         Args:
             name (str): see class documentation.
@@ -32,7 +32,7 @@ class Player:
         self.roll_history = []
 
     def roll(self): 
-        """ Rolling a dice 6 times and adding the values to a list.
+        """Rolling a dice 6 times and adding the values to a list.
 
         Side effect:
             Modifying the value of self.rolls by appending values. 
@@ -45,7 +45,7 @@ class Player:
             self.rolls.append(roll)
 
     def sorting_sequence(self): 
-        """ Sorts a list of dice roll values and extracts the unique values to 
+        """Sorts a list of dice roll values and extracts the unique values to 
             return the roll number and the roll value.
             
             Returns:
@@ -147,7 +147,7 @@ class Player:
         return self.rolls
     
     def __lt__(self, other):
-        """ Compares the two players based on their total points and gives 
+        """Compares the two players based on their total points and gives 
                 an update.
         
         Args:
@@ -168,7 +168,7 @@ class Player:
         return self.points < other.points
              
     def __str__(self):
-        """ Returns a string representation of the Player object.
+        """Returns a string representation of the Player object.
 
         Returns:
             str: A string that represents the player's name and thier points.
@@ -184,8 +184,7 @@ class Player:
             
     @classmethod       
     def history_score(cls,player_one,player_two): # Beza Ermias
-        """
-        Shows a bar graph of the dice rolls that players one and two
+        """Shows a bar graph of the dice rolls that players one and two
         made throughout the game, along with their final results. 
         
         
