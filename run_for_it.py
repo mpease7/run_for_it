@@ -145,12 +145,43 @@ class Player:
         print(f"You got a sequence of {number}!")
         print(f"Your current score: {self.points}\n")
         return self.rolls
-        
- 
-        
-            
-            
     
+    def __lt__(self, other):
+        """ Compares the two players based on their total points and gives 
+                an update.
+        
+        Args:
+            other (Players): The other Player instance object compared to.
+                
+        Returns:
+            bool: Would return True if player 1 total points is less than 
+                player 2.
+                
+        Primary author:
+            Lily Dinh
+                
+        Technique claimed:
+            Magic methods.
+        """ 
+        if self.points < other.points:
+            print(f"{self.name} currently has less points than {other.name}")
+        return self.points < other.points
+             
+    def __str__(self):
+        """ Returns a string representation of the Player object.
+
+        Returns:
+            str: A string that represents the player's name and thier points.
+                
+        Primary author:
+            Lily Dinh
+                
+        Technique claimed:
+            Magic methods.
+        """
+        return f"{self.name}'s score: {self.points}" 
+        
+            
     @classmethod       
     def history_score(cls,player_one,player_two): # Beza Ermias
         """
@@ -191,42 +222,7 @@ class Player:
         bar2.set_ylabel("Count")
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
-        
-        def __lt__(self, other):
-            """ Compares the two players based on their total points and gives 
-                    an update.
-        
-            Args:
-                other (Players): The other Player instance object compared to.
-                
-            Returns:
-                bool: Would return True if player 1 total points is less than 
-                    player 2.
-                
-            Primary author:
-                Lily Dinh
-                
-            Technique claimed:
-                Magic methods.
-            """
-            
-            if self.points < other.points:
-                print(f"{self.name} currently has less points than {other.name}")
-            return self.points < other.points 
-        
-        def __str__(self):
-            """ Returns a string representation of the Player object.
 
-            Returns:
-                str: A string that represents the player's name and thier points.
-                
-            Primary author:
-                Lily Dinh
-                
-            Technique claimed:
-                Magic methods.
-            """
-            return f"{self.name}'s score: {self.points}"
  
 class Game():
     """Class that plays the game.
