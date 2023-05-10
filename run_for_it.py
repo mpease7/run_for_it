@@ -6,7 +6,7 @@ import random
 import sys 
 from time import sleep
 
-class Player: #Lily Dinh
+class Player:
     """Represents a player in the game
 
     Attributes:
@@ -163,7 +163,10 @@ class Player: #Lily Dinh
             player_two (Player): The second player 
             
         Primary author:
-            Beza Ermias 
+            Beza Ermias
+            
+        Technique claimed:
+            Visualizing data with pyplot.
             
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
@@ -189,16 +192,20 @@ class Player: #Lily Dinh
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
         
-        def __lt__(self, other): # Lily Dinh Magic Methods
-            """Compares the two players based on their total points and gives 
-                an update.
+        def __lt__(self, other):
+            """ Compares the two players based on their total points and gives an update.
         
             Args:
                 other (Players): The other Player instance object compared to.
                 
             Returns:
-                bool: Would return True if player 1 total points is less than 
-                    player 2.
+                bool: Would return True if player 1 total points is less than player 2.
+                
+            Primary author:
+                Lily Dinh
+                
+            Technique claimed:
+                Magic methods.
             """
             
             if self.points < other.points:
@@ -209,8 +216,13 @@ class Player: #Lily Dinh
             """ Returns a string representation of the Player object.
 
             Returns:
-                str: A string that represents the player's name and their 
-                    points.
+                str: A string that represents the player's name and thier points.
+                
+            Primary author:
+                Lily Dinh
+                
+            Technique claimed:
+                Magic methods.
             """
             return f"{self.name}: {self.points} points"
  
@@ -275,6 +287,9 @@ class Game():
             
         Primary author:
             Beza Ermias 
+        
+        Technique claimed:
+            Conditional expression.
         """ 
         rollcount = {1:0,2:0,3:0,4:0,5:0,6:0}
         for r in rolls:
@@ -308,8 +323,8 @@ class Game():
                 print(f"{player.name} Won!!\n")
                 self.winner = True
 
-def read_scores(filepath): #Lily Dinh with statements
-    """Reads the textfile in utf-8 that consists of the players name and scores
+def read_scores(filepath):
+    """ Reads the textfile in utf-8 that consists of the players name and scores
 
     Args:
         filepath (str): The path to the trxt file with the names and highest 
@@ -318,6 +333,15 @@ def read_scores(filepath): #Lily Dinh with statements
     Returns:
         dict: A dictionary containing players' names as keys and their
         highest socres as values.
+        
+    Side effects:
+        Writes to stdout.
+        
+    Primary author:
+        Lily Dinh
+        
+    Technique claimed:
+        With statement.
     """
     with open(filepath, 'r', encoding = "utf-8") as f:
         
