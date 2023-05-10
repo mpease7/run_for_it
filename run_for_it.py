@@ -144,32 +144,11 @@ class Player: #Lily Dinh
         self.roll_history.extend(self.rolls)
         print(f"You got a sequence of {number}!")
         print(f"Your current score: {self.points}")
+        return self.rolls
+        
  
         
             
-    def sabotaging_points(rolls,other_player): # Beza Ermias
-        """
-        A function that uses the current rounds's dice results to determine how many
-        sabotage points should be subtracted from the opposing player's total score. 
-                
-        Args:
-            rolls(list[int]): A list of intergers representing the dice rolls in the
-            current round
-            other_player(Player): A instance of the Player class representing the player. 
-            
-        Primary author:
-            Beza Ermias 
-        """ 
-        lastrolls = {}
-        for r in rolls:
-            lastrolls[r]+=1
-        s_points = 0
-        for r in rolls:   
-            s_points = r * lastrolls[r] if lastrolls[r] >= 4 else "Cannot sabotage in this round!"                     
-        if isinstance(s_points, int):
-            other_player.points -= s_points
-        else:
-            print(s_points)
             
     
     @classmethod       
@@ -264,12 +243,41 @@ class Game():
         Side effects:
             Printing the current players turn.
         """
-        for player in self.players:
+        for i in range(len(self.players)):
             print("===================================================================")
             print("===================================================================")
-            print(f"{player.name} it's your turn\n")
-            player.turn()
+            print(f"{self.players[i].name} it's your turn\n")
+            rolls =self.players[i].turn()
+            self.sabotaging_points(rolls,self.players[(i+1)%2])
             sleep(2)
+            
+    def sabotaging_points(self,rolls,other_player): # Beza Ermias
+        """
+        A function that uses the current rounds's dice results to determine how many
+        sabotage points should be subtracted from the opposing player's total score. 
+                
+        Args:
+            rolls(list[int]): A list of intergers representing the dice rolls in the
+            current round
+            other_player(Player): A instance of the Player class representing the player. 
+            
+        Primary author:
+            Beza Ermias 
+        """ 
+        rollcount = {1:0,2:0,3:0,4:0,5:0,6:0}
+        for r in rolls:
+            rollcount[r]+=1
+        s_points = 0
+        for r in rollcount:  
+            s_points += r * 4 if rollcount[r] >= 3 else 0  
+        if s_points>0:
+            print("You have sabotage the other player this round :) ")
+        else:
+            print("Cannot sabotage this round")
+                
+        other_player.points -= s_points
+        if other_player.points < 0:
+            other_player=0            
             
     def check(self):
         """Checks for the winner of the game.
