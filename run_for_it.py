@@ -387,7 +387,6 @@ def welcome(name1,name2):
         
     Technique claimed:
         Use of f-strings.
-    
     """
     print("===================================================================")
     print(f"Welcome {name1} and {name2} to Run For It!!")
@@ -437,7 +436,6 @@ def main(player1 = "player1", player2 = "player2"):
     Technique claimed:
         Use of Optional Parameters.    
     """
-    
     my_game = Game()
     
     my_game.add_player(player1)
