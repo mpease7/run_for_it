@@ -452,6 +452,15 @@ def main(player1 = "player1", player2 = "player2"):
     
     print("Here are our previous players' scores: ")
     read_scores("players_highest_score.txt")
+    print("\nIn the process of changing scores...")
+    update_scores("players_highest_score.txt", my_game.players[0].name, 
+                  my_game.players[0].points)
+    sleep(2)
+    update_scores("players_highest_score.txt",my_game.players[1].name, 
+                  my_game.players[1].points)
+    sleep(2)
+    print ("\nNew updated scores:")
+    read_scores("players_highest_score.txt")
     print(f"\n{player1}'s and {player2}'s rolls: ")
     my_game.players[0].history_score(my_game.players[0], my_game.players[1])
        
