@@ -143,7 +143,7 @@ class Player: #Lily Dinh
                 
         self.roll_history.extend(self.rolls)
         print(f"You got a sequence of {number}!")
-        print(f"Your current score: {self.points}")
+        print(f"Your current score: {self.points}\n")
         return self.rolls
         
  
@@ -276,9 +276,12 @@ class Game():
         for r in rollcount:  
             s_points += r * 2 if rollcount[r] >= 3 else 0  
         if s_points>0:
-            print("You have sabotage the other player this round :) ")
+            print(f"You have sabotaged the other player by rolling "
+                  "three of the same! "
+                  f"They lose {s_points} points! ;)")
         else:
-            print("Cannot sabotage this round")
+            
+            print("Cannot sabotage this round!")
                 
         other_player.points -= s_points
         if other_player.points < 0:
