@@ -358,6 +358,18 @@ def read_scores(filepath):
                 player_scores[name] = max(player_scores[name], score)
         print(player_scores)
         return player_scores
+    
+def update_scores(filepath, player, points):
+    
+    player_scores = read_scores(filepath)
+    if player in player_scores:
+        player_scores[player] = max(player_scores[player], points)
+    else:
+        player_scores[player] = points
+        
+    with open(filepath, 'w', encoding = "utf-8") as f:
+        for name, score in player_scores.items():
+            f.write(f"{name},{score}\n")
  
 def welcome(name1,name2): 
     """Display to users the rules of the game with an example roll
