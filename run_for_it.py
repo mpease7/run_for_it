@@ -274,7 +274,7 @@ class Game():
             rollcount[r]+=1
         s_points = 0
         for r in rollcount:  
-            s_points += r * 4 if rollcount[r] >= 3 else 0  
+            s_points += r * 2 if rollcount[r] >= 3 else 0  
         if s_points>0:
             print("You have sabotage the other player this round :) ")
         else:
