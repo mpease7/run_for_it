@@ -320,7 +320,7 @@ class Game():
                 self.winner = True
 
 def read_scores(filepath):
-    """ Reads the textfile in utf-8 that consists of the players name and scores
+    """Reads the textfile in utf-8 that consists of the players name and scores
 
     Args:
         filepath (str): The path to the text file with the names and highest 
@@ -354,7 +354,7 @@ def read_scores(filepath):
         return player_scores
     
 def update_scores(filepath, player, points):
-    """ Updates the textfile that consists of the previous player's name & score.
+    """Updates the textfile that consists of the previous player's name & score.
         Writes their highest score.
 
     Args:
