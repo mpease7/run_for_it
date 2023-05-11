@@ -197,7 +197,6 @@ class Player:
             
         Technique claimed:
             Visualizing data with pyplot.
-            
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | \
@@ -272,7 +271,7 @@ class Game():
             self.sabotaging_points(rolls,self.players[(i+1)%2])
             sleep(2)
             
-    def sabotaging_points(self,rolls,other_player): # Beza Ermias
+    def sabotaging_points(self,rolls,other_player):
         """Uses the current rounds's dice results to determine how many sabotage
             points should be subtracted from the opposing player's total score. 
                 
