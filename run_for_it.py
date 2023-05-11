@@ -355,7 +355,20 @@ def read_scores(filepath):
         return player_scores
     
 def update_scores(filepath, player, points):
+    """ Updates the textfile that consists of the previous player's name & score.
+        Writes their highest score.
+
+    Args:
+        filepath (str): The path to the highest score file
+        player (str): The name of the player
+        points (_type_): The points to update for the player.
+        
+    Primary author:
+        Lily Dinh
     
+    Technique Claimed:
+        With statements.
+    """
     player_scores = read_scores(filepath)
     if player in player_scores:
         player_scores[player] = max(player_scores[player], points)
