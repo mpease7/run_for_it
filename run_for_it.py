@@ -196,12 +196,7 @@ class Player:
             Beza Ermias
             
         Technique claimed:
-<<<<<<< HEAD
-            Visualizing data with pyplot or seaborn
-            
-=======
             Visualizing data with pyplot.
->>>>>>> 2ab5a938122bf0c35d3e72032f11eb731835f106
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | \
@@ -288,15 +283,9 @@ class Game():
             
         Primary author:
             Beza Ermias 
-<<<<<<< HEAD
-            
-        Technique claimed:
-            Conditonal Expressions
-=======
         
         Technique claimed:
             Conditional expression.
->>>>>>> 2ab5a938122bf0c35d3e72032f11eb731835f106
         """ 
         rollcount = {1:0,2:0,3:0,4:0,5:0,6:0}
         for r in rolls:
