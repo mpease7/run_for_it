@@ -165,6 +165,9 @@ class Player: #Lily Dinh
         Primary author:
             Beza Ermias 
             
+        Technique claimed:
+            Visualizing data with pyplot or seaborn
+            
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
         fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
@@ -268,6 +271,9 @@ class Game():
             
         Primary author:
             Beza Ermias 
+            
+        Technique claimed:
+            Conditonal Expressions
         """ 
         rollcount = {1:0,2:0,3:0,4:0,5:0,6:0}
         for r in rolls:
@@ -381,7 +387,7 @@ def main(player1 = "player1", player2 = "player2"):
             players' scores to the console
         
     Primary author:
-        Ashley Kharbanda
+         Kharbanda
         
     Technique claimed:
         Use of Optional Parameters.    
