@@ -324,7 +324,7 @@ def read_scores(filepath):
     """ Reads the textfile in utf-8 that consists of the players name and scores
 
     Args:
-        filepath (str): The path to the trxt file with the names and highest 
+        filepath (str): The path to the text file with the names and highest 
             scores
 
     Returns:
