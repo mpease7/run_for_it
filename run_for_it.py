@@ -6,7 +6,7 @@ import random
 import sys 
 from time import sleep
 
-class Player: #Lily Dinh
+class Player:
     """Represents a player in the game
 
     Attributes:
@@ -18,7 +18,7 @@ class Player: #Lily Dinh
     """
     
     def __init__(self, name):
-        """ Initializes new player object with name given
+        """Initializes new player object with name given
 
         Args:
             name (str): see class documentation.
@@ -32,7 +32,7 @@ class Player: #Lily Dinh
         self.roll_history = []
 
     def roll(self): 
-        """ Rolling a dice 6 times and adding the values to a list.
+        """Rolling a dice 6 times and adding the values to a list.
 
         Side effect:
             Modifying the value of self.rolls by appending values. 
@@ -45,7 +45,7 @@ class Player: #Lily Dinh
             self.rolls.append(roll)
 
     def sorting_sequence(self): 
-        """ Sorts a list of dice roll values and extracts the unique values to 
+        """Sorts a list of dice roll values and extracts the unique values to 
             return the roll number and the roll value.
             
             Returns:
@@ -143,18 +143,48 @@ class Player: #Lily Dinh
                 
         self.roll_history.extend(self.rolls)
         print(f"You got a sequence of {number}!")
-        print(f"Your current score: {self.points}")
+        print(f"Your current score: {self.points}\n")
         return self.rolls
-        
- 
-        
-            
-            
     
+    def __lt__(self, other):
+        """Compares the two players based on their total points and gives 
+                an update.
+        
+        Args:
+            other (Players): The other Player instance object compared to.
+                
+        Returns:
+            bool: Would return True if player 1 total points is less than 
+                player 2.
+                
+        Primary author:
+            Lily Dinh
+                
+        Technique claimed:
+            Magic methods.
+        """ 
+        if self.points < other.points:
+            print(f"{self.name} currently has less points than {other.name}")
+        return self.points < other.points
+             
+    def __str__(self):
+        """Returns a string representation of the Player object.
+
+        Returns:
+            str: A string that represents the player's name and thier points.
+                
+        Primary author:
+            Lily Dinh
+                
+        Technique claimed:
+            Magic methods.
+        """
+        return f"{self.name}'s score: {self.points}" 
+        
+            
     @classmethod       
     def history_score(cls,player_one,player_two): # Beza Ermias
-        """
-        Shows a bar graph of the dice rolls that players one and two
+        """Shows a bar graph of the dice rolls that players one and two
         made throughout the game, along with their final results. 
         
         
@@ -163,14 +193,19 @@ class Player: #Lily Dinh
             player_two (Player): The second player 
             
         Primary author:
-            Beza Ermias 
+            Beza Ermias
             
         Technique claimed:
+<<<<<<< HEAD
             Visualizing data with pyplot or seaborn
             
+=======
+            Visualizing data with pyplot.
+>>>>>>> 2ab5a938122bf0c35d3e72032f11eb731835f106
         """
         fig,(bar1,bar2) = plt.subplots(1,2)
-        fig.suptitle(f"{player_one.name} scored {player_one.points} | {player_two.name} scored {player_two.points}")
+        fig.suptitle(f"{player_one.name} scored {player_one.points} | \
+{player_two.name} scored {player_two.points}")
         rolled_charts = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0}
         for roll in player_one.roll_history:
             rolled_charts[roll] = rolled_charts[roll]+1
@@ -190,27 +225,7 @@ class Player: #Lily Dinh
         bar2.set_ylabel("Count")
         bar2.set_title(f"Dice Roll By {player_two.name}")
         plt.show()
-        
-        def __lt__(self, other): # Lily Dinh Magic Methods
-            """ Compares the two players based on their total points and gives an update.
-        
-            Args:
-                other (Players): The other Player instance object compared to.
-            Returns:
-                bool: Would return True if player 1 total points is less than player 2.
-            """
-            
-            if self.points < other.points:
-                print(f"{self.name} currently has less points than {other.name}")
-            return self.points < other.points 
-        
-        def __str__(self):
-            """ Returns a string representation of the Player object.
 
-            Returns:
-                str: A string that represents the player's name and thier points.
-            """
-            return f"{self.name}: {self.points} points"
  
 class Game():
     """Class that plays the game.
@@ -252,28 +267,36 @@ class Game():
             Printing the current players turn.
         """
         for i in range(len(self.players)):
-            print("===================================================================")
-            print("===================================================================")
+            print("============================================================\
+=======")
+            print("============================================================\
+=======")
             print(f"{self.players[i].name} it's your turn\n")
             rolls =self.players[i].turn()
             self.sabotaging_points(rolls,self.players[(i+1)%2])
             sleep(2)
             
-    def sabotaging_points(self,rolls,other_player): # Beza Ermias
-        """
-        A function that uses the current rounds's dice results to determine how many
-        sabotage points should be subtracted from the opposing player's total score. 
+    def sabotaging_points(self,rolls,other_player):
+        """Uses the current rounds's dice results to determine how many sabotage
+            points should be subtracted from the opposing player's total score. 
                 
         Args:
-            rolls(list[int]): A list of intergers representing the dice rolls in the
-            current round
-            other_player(Player): A instance of the Player class representing the player. 
+            rolls(list[int]): A list of intergers representing the dice rolls
+                in the current round
+            other_player(Player): A instance of the Player class representing 
+                the player. 
             
         Primary author:
             Beza Ermias 
+<<<<<<< HEAD
             
         Technique claimed:
             Conditonal Expressions
+=======
+        
+        Technique claimed:
+            Conditional expression.
+>>>>>>> 2ab5a938122bf0c35d3e72032f11eb731835f106
         """ 
         rollcount = {1:0,2:0,3:0,4:0,5:0,6:0}
         for r in rolls:
@@ -282,9 +305,11 @@ class Game():
         for r in rollcount:  
             s_points += r * 2 if rollcount[r] >= 3 else 0  
         if s_points>0:
-            print("You have sabotage the other player this round :) ")
+            print(f"You have sabotaged the other player by rolling "
+                  "three of the same! "
+                  f"They lose {s_points} points! ;)")
         else:
-            print("Cannot sabotage this round")
+            print("You cannot sabotage the other player this round :(")
                 
         other_player.points -= s_points
         if other_player.points < 0:
@@ -299,20 +324,31 @@ class Game():
         """
         for player in self.players:
             if player.points >= 100:
-                print("===================================================================")
-                print(f"{player.name}'s score: {player.points}")
+                print("========================================================\
+===========")
+                print(player)
                 print(f"{player.name} Won!!\n")
                 self.winner = True
 
-def read_scores(filepath): #Lily Dinh with statements
+def read_scores(filepath):
     """ Reads the textfile in utf-8 that consists of the players name and scores
 
     Args:
-        filepath (str): The path to the trxt file with the names and highest scores
+        filepath (str): The path to the text file with the names and highest 
+            scores
 
     Returns:
         dict: A dictionary containing players' names as keys and their
         highest socres as values.
+        
+    Side effects:
+        Writes to stdout.
+        
+    Primary author:
+        Lily Dinh
+        
+    Technique claimed:
+        With statement.
     """
     with open(filepath, 'r', encoding = "utf-8") as f:
         
@@ -327,6 +363,31 @@ def read_scores(filepath): #Lily Dinh with statements
                 player_scores[name] = max(player_scores[name], score)
         print(player_scores)
         return player_scores
+    
+def update_scores(filepath, player, points):
+    """ Updates the textfile that consists of the previous player's name & score.
+        Writes their highest score.
+
+    Args:
+        filepath (str): The path to the highest score file
+        player (str): The name of the player
+        points (int): The points to update for the player.
+        
+    Primary author:
+        Lily Dinh
+    
+    Technique Claimed:
+        With statements.
+    """
+    player_scores = read_scores(filepath)
+    if player in player_scores:
+        player_scores[player] = max(player_scores[player], points)
+    else:
+        player_scores[player] = points
+        
+    with open(filepath, 'w', encoding = "utf-8") as f:
+        for name, score in player_scores.items():
+            f.write(f"{name},{score}\n")
  
 def welcome(name1,name2): 
     """Display to users the rules of the game with an example roll
@@ -344,7 +405,6 @@ def welcome(name1,name2):
         
     Technique claimed:
         Use of f-strings.
-    
     """
     print("===================================================================")
     print(f"Welcome {name1} and {name2} to Run For It!!")
@@ -354,7 +414,9 @@ def welcome(name1,name2):
 sequence, but if you don't, your turn will end. \n3)If you roll a one, you \
 have the option to roll your remaining dice to increase your sequence, \
 but if you do not roll a number to continue the sequence, you will lose \
-all your points for that round.")
+all your points for that round.\nSpecial Rule) You have the chance to sabotage \
+your oponent's score! If you roll three or more of \
+the same number, your oponent will lose whatever number you rolled times 2!")
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     print("Example: \nRoll: 1,3,4,4,5,6 \nI will choose to roll the \
 remaining 5 again because I got a 1 in my sequence \nNew Role: \
@@ -392,7 +454,6 @@ def main(player1 = "player1", player2 = "player2"):
     Technique claimed:
         Use of Optional Parameters.    
     """
-    
     my_game = Game()
     
     my_game.add_player(player1)
@@ -406,6 +467,15 @@ def main(player1 = "player1", player2 = "player2"):
         
     
     print("Here are our previous players' scores: ")
+    read_scores("players_highest_score.txt")
+    print("\nIn the process of changing scores...")
+    update_scores("players_highest_score.txt", my_game.players[0].name, 
+                  my_game.players[0].points)
+    sleep(2)
+    update_scores("players_highest_score.txt",my_game.players[1].name, 
+                  my_game.players[1].points)
+    sleep(2)
+    print ("\nNew updated scores:")
     read_scores("players_highest_score.txt")
     print(f"\n{player1}'s and {player2}'s rolls: ")
     my_game.players[0].history_score(my_game.players[0], my_game.players[1])
