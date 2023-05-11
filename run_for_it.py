@@ -460,6 +460,7 @@ def main(player1 = "player1", player2 = "player2"):
     print("\nIn the process of changing scores...")
     update_scores("players_highest_score.txt", my_game.players[0].name, 
                   my_game.players[0].points)
+    print("\n")
     sleep(2)
     update_scores("players_highest_score.txt",my_game.players[1].name, 
                   my_game.players[1].points)
