@@ -427,7 +427,7 @@ score of 100")
             exit()
                                                   
 def main(player1 = "player1", player2 = "player2"):
-    """Runs the game Run For It
+    """Runs the game Run For It 
   
     Args:
         player1 (str, optional): The first player's name, default to "player1"
