@@ -361,7 +361,7 @@ def update_scores(filepath, player, points):
     Args:
         filepath (str): The path to the highest score file
         player (str): The name of the player
-        points (_type_): The points to update for the player.
+        points (int): The points to update for the player.
         
     Primary author:
         Lily Dinh
